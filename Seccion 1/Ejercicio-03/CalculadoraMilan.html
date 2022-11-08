@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- Metadatos de los documentos HTML5 -->
+    <meta name="author" content="Jesús Alonso Gárcia">
+    <!-- Definición de la ventana grafica -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Titulo de la página -->
+    <title>Ejercicio 3</title>
+    <!-- añadir el elemento link de enlace a laa hoja de estilo dentro del <head> del documento html -->
+    <link rel="stylesheet" type="text/css" href="CalculadoraMilan.css">
+    <script src="CalculadoraMilan.js"></script>
+</head>
+
+<body>
+    <!-- Calculadora-->
+    <section>
+        <form>
+            <label for="screen" hidden>Resultado</label>
+            <input type="text" id="screen" readonly>
+            <input type="button" value="C" onclick=""> 
+            <input type="button" value="CE" onclick=""> 
+            <input type="button" value="+/-" onclick=""> 
+            <input type="button" value="√" onclick=""> 
+            <input type="button" value="%" onclick=""> 
+
+            <input type="button" value="7" onclick="calc.numeros(7)"> 
+            <input type="button" value="8" onclick="calc.numeros(8)"> 
+            <input type="button" value="9" onclick="calc.numeros(9)"> 
+            <input type="button" value="*" onclick=""> 
+            <input type="button" value="/" onclick=""> 
+            
+            <input type="button" value="4" onclick="calc.numeros(4)"> 
+            <input type="button" value="5" onclick="calc.numeros(5)"> 
+            <input type="button" value="6" onclick="calc.numeros(6)"> 
+            <input type="button" value="-" onclick=""> 
+            <input type="button" value="MRC" onclick=""> 
+            
+            <input type="button" value="1" onclick="calc.numeros(1)"> 
+            <input type="button" value="2" onclick="calc.numeros(2)"> 
+            <input type="button" value="3" onclick="calc.numeros(3)"> 
+            <input type="button" value="+" onclick=""> 
+            <input type="button" value="M-" onclick=""> 
+            
+            <input type="button" value="0" onclick="calc.numeros(0)"> 
+            <input type="button" value="." onclick=""> 
+            <input type="button" value="=" onclick=""> 
+            <input type="button" value="M+" onclick=""> 
+        </form>
+    </section>
+</body>
+
+</html>
