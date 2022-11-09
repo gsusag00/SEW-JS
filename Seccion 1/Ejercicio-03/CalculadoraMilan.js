@@ -8,8 +8,8 @@ class CalculadoraMilan {
         this.screen = '';
         this.op = '';
         this.left_op = '';
-        this.memoria = 0;
         this.point = false;
+        this.memory = 0;
     }
 
     operacion(val) {
@@ -38,11 +38,16 @@ class CalculadoraMilan {
     }
 
     cpress() {
-
+        this.init();
+        this.update_screen();
     }
 
     cepress() {
-
+        this.screen = '';
+        this.op = '';
+        this.left_op = '';
+        this.point = false;
+        this.update_screen();
     }
 
     changesign() {
@@ -92,7 +97,7 @@ class CalculadoraMilan {
             this.init();
             this.update_screen();
         }
-        document.getElementById('screen').value = this.screen;
+        document.getElementById('pantalla').value = this.screen;
     }
 
 }

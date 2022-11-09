@@ -20,9 +20,9 @@
     <section>
         <form>
             <label for="screen" hidden>Resultado</label>
-            <input type="text" id="screen" readonly>
-            <input type="button" value="C" onclick=""> 
-            <input type="button" value="CE" onclick=""> 
+            <input type="text" id="pantalla" readonly>
+            <input type="button" value="C" onclick="calc.cpress()"> 
+            <input type="button" value="CE" onclick="calc.cepress()"> 
             <input type="button" value="+/-" onclick=""> 
             <input type="button" value="√" onclick=""> 
             <input type="button" value="%" onclick=""> 
@@ -46,7 +46,7 @@
             <input type="button" value="M-" onclick=""> 
             
             <input type="button" value="0" onclick="calc.numeros(0)"> 
-            <input type="button" value="." onclick=""> 
+            <input type="button" value="." onclick="calc.numeros('.')"> 
             <input type="button" value="=" onclick="calc.igual()"> 
             <input type="button" value="M+" onclick=""> 
         </form>
