@@ -23,9 +23,9 @@
             <input type="text" id="pantalla" readonly>
             <input type="button" value="C" onclick="calc.cpress()"> 
             <input type="button" value="CE" onclick="calc.cepress()"> 
-            <input type="button" value="+/-" onclick=""> 
-            <input type="button" value="√" onclick=""> 
-            <input type="button" value="%" onclick=""> 
+            <input type="button" value="+/-" onclick="calc.changesign()"> 
+            <input type="button" value="√" onclick="calc.sqrt()"> 
+            <input type="button" value="%" onclick="calc.porcentage()"> 
 
             <input type="button" value="7" onclick="calc.numeros(7)"> 
             <input type="button" value="8" onclick="calc.numeros(8)"> 
@@ -46,7 +46,7 @@
             <input type="button" value="M-" onclick=""> 
             
             <input type="button" value="0" onclick="calc.numeros(0)"> 
-            <input type="button" value="." onclick="calc.numeros('.')"> 
+            <input type="button" value="." onclick="calc.punto()"> 
             <input type="button" value="=" onclick="calc.igual()"> 
             <input type="button" value="M+" onclick=""> 
         </form>
