@@ -20,8 +20,16 @@ class CalculadoraMilan {
     }
 
     operacion(val) {
-        if(this.right) {
-            this.igual();
+        if (this.has_eval) {
+            this.op = '';
+            this.right = '';
+            this.has_eval = false;
+        } else {
+            if (this.right) {
+                this.doCalc();
+                this.op = '';
+                this.right = '';
+            }
         }
         this.op = val;
         this.update_screen();
@@ -29,7 +37,7 @@ class CalculadoraMilan {
 
     numeros(val) {
         if (!this.op) {
-            if(this.has_eval) {
+            if (this.left === this.memory) {
                 this.left = val.toString();
                 this.has_eval = false;
             } else {
@@ -43,12 +51,12 @@ class CalculadoraMilan {
     }
 
     punto() {
-        if(this.right) {
-            if(!this.right.includes('.')) {
+        if (this.right) {
+            if (!this.right.includes('.')) {
                 this.right += '.';
             }
         } else {
-            if(!this.left.includes('.')){
+            if (!this.left.includes('.')) {
                 this.left += '.';
             }
         }
@@ -64,13 +72,14 @@ class CalculadoraMilan {
         this.screen = '';
         this.op = '';
         this.left = '';
+        this.right = '';
         this.point = false;
         this.update_screen();
     }
 
     changesign() {
-        if(this.right) {
-            if(this.right.charAt(0) === '-') {
+        if (this.right) {
+            if (this.right.charAt(0) === '-') {
                 this.right = this.right.substring(1);
             }
             else {
@@ -78,7 +87,7 @@ class CalculadoraMilan {
             }
         }
         else {
-            if(this.left.charAt(0) === '-') {
+            if (this.left.charAt(0) === '-') {
                 this.left = this.left.substring(1);
             }
             else {
@@ -89,7 +98,7 @@ class CalculadoraMilan {
     }
 
     sqrt() {
-        if(this.right) {
+        if (this.right) {
             this.right = 'Math.sqrt(' + this.right + ')';
         }
         else {
@@ -99,12 +108,12 @@ class CalculadoraMilan {
     }
 
     porcentage() {
-        if(this.right) {
-            if(this.op === '+' || this.op === '-') {
+        if (this.right) {
+            if (this.op === '+' || this.op === '-') {
                 this.right = '(' + this.left + '/ 100 ) * ' + this.right;
             }
             else {
-                this.right = '(' + this.right + ' / 100 )'; 
+                this.right = '(' + this.right + ' / 100 )';
             }
         }
         else {
@@ -114,73 +123,97 @@ class CalculadoraMilan {
     }
 
     mrcpress() {
-
+        if (!this.op) {
+            this.left = this.memory;
+        } else {
+            if (!this.right) {
+                this.right = this.memory;
+            } else {
+                this.doCalc();
+                this.memory = Number(this.left);
+                this.op = '';
+                this.right = '';
+            }
+        }
+        this.update_screen();
     }
 
     m_minus() {
-
+        this.doCalc();
+        this.memory -= Number(this.left);
+        this.update_screen();
     }
 
     m_plus() {
-
+        this.doCalc();
+        this.memory += Number(this.left);
+        this.update_screen();
     }
 
-    igual() {
+    doCalc() {
+        var toEval;
         try {
-            var toEval = eval(this.left + this.op + this.right);
-            this.has_eval = true;
-            this.update_screen(toEval);
+            toEval = eval(this.left + this.op + this.right);
         } catch (err) {
             this.screen = 'Error';
             document.getElementById('screen').value = this.screen;
         }
+        this.left = toEval;
     }
 
-    update_screen(toEval=null) {
+    igual() {
+        this.doCalc();
+        this.has_eval = true;
+        this.update_screen();
+    }
+
+    update_screen() {
         var val;
-        if(toEval === null) {
+        if (!this.has_eval) {
             val = this.left + this.op + this.right;
         }
         else {
-            val = toEval;
-        }
-        if(this.screen === 'Error') {
-            this.init();
-            this.update_screen();
-        }
-        if(this.right && toEval !== null) {
-            this.left = val.toString();
-            this.op = '';
-            this.right = '';
+            val = this.left;
         }
         document.getElementById('pantalla').value = val;
-        console.log('Left value: ' + this.left);
     }
 
 }
 
 var calc = new CalculadoraMilan();
-var ops = ['+','-','/','*'];
-document.addEventListener('keydown',function (event) {
-    if(!isNaN(event.key) || event.key === '.') {
-        calc.numeros(event.key);
-    }
-    if(ops.includes(event.key)) {
-        calc.operacion(event.key);
-    }
-    if(event.key === '=') {
-        calc.igual();
-    }
-    if(event.key === 's') {
-        calc.sqrt();
-    }
-    if(event.key === '%') {
-        calc.porcentage();
-    }
-    if(event.key === 'c') {
-        calc.cpress();
-    }
-    if(event.key === 'e') {
-        calc.cepress();
+var ops = ['+', '-', '/', '*'];
+document.addEventListener('keydown', function (event) {
+    if (event.shiftKey) {
+        if (event.key === '+') {
+            calc.m_plus();
+        }
+        else if (event.key === '-') {
+            calc.m_minus();
+        }
+    } else {
+        if (!isNaN(event.key) || event.key === '.') {
+            calc.numeros(event.key);
+        }
+        else if (ops.includes(event.key)) {
+            calc.operacion(event.key);
+        }
+        else if (event.key === '=') {
+            calc.igual();
+        }
+        else if (event.key === 's') {
+            calc.sqrt();
+        }
+        else if (event.key === '%') {
+            calc.porcentage();
+        }
+        else if (event.key === 'c') {
+            calc.cpress();
+        }
+        else if (event.key === 'e') {
+            calc.cepress();
+        }
+        else if (event.key === 'm') {
+            calc.mrcpress();
+        }
     }
 });
