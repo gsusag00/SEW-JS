@@ -175,15 +175,22 @@ class CalculadoraMilan {
         this.update_screen();
     }
 
-    doCalc() {
+    eval(val) {
         var toEval;
         try {
-            toEval = eval(this.left + this.op + this.right);
+            toEval = eval(val);
         } catch (err) {
             this.screen = 'Error';
             document.getElementById('screen').value = this.screen;
+            this.op = '';
+            this.left = '';
+            this.right = '';
         }
-        this.left = toEval;
+        return toEval;
+    }
+
+    doCalc() {
+        this.left = this.eval(this.left + this.op + this.right);
     }
 
     igual() {

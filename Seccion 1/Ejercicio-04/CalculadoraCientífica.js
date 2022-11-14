@@ -15,7 +15,6 @@ class CalculadoraMilan {
         this.op = '';
         this.left = '';
         this.right = '';
-        this.point = false;
         this.memory = 0;
     }
 
@@ -98,7 +97,6 @@ class CalculadoraMilan {
         this.op = '';
         this.left = '';
         this.right = '';
-        this.point = false;
         this.update_screen();
     }
 
@@ -175,19 +173,22 @@ class CalculadoraMilan {
         this.update_screen();
     }
 
-    doCalc() {
+    eval(val) {
         var toEval;
         try {
-            toEval = eval(this.left + this.op + this.right);
+            toEval = eval(val);
         } catch (err) {
             this.screen = 'Error';
             document.getElementById('screen').value = this.screen;
             this.op = '';
             this.left = '';
             this.right = '';
-            this.point = false;
         }
-        this.left = toEval;
+        return toEval;
+    }
+
+    doCalc() {
+        this.left = this.eval(this.left + this.op + this.right);
     }
 
     igual() {
@@ -213,6 +214,7 @@ class CalculadoraCienfitica extends CalculadoraMilan {
 
     trig = 'DEG';
     shift = false;
+    hypr = false;
     open_parentesis = 0;
 
     constructor() {
@@ -235,11 +237,29 @@ class CalculadoraCienfitica extends CalculadoraMilan {
     }
 
     deg() {
-        this.trig = 'DEG';
+        if (this.trig === 'DEG') {
+            this.trig = 'RAD';
+        }
+        else if (this.trig === 'RAD') {
+            this.trig = 'GRAD';
+        }
+        else {
+            this.trig = 'DEG';
+        }
+        console.log(this.trig);
     }
 
     hyp() {
-        this.trig = 'HYP';
+        this.hypr = !this.hypr
+        if(this.hypr) {
+            document.querySelector("input[value='sin']").value = 'sinh';
+            document.querySelector("input[value='cos']").value = 'cosh';
+            document.querySelector("input[value='tan']").value = 'tanh';
+        } else {
+            document.querySelector("input[value='sinh']").value = 'sin';
+            document.querySelector("input[value='cosh']").value = 'cos';
+            document.querySelector("input[value='tanh']").value = 'tan';
+        }
     }
 
     fe() {
@@ -272,16 +292,51 @@ class CalculadoraCienfitica extends CalculadoraMilan {
 
     }
 
-    sin() {
 
+    convertAngle(val) {
+        if (this.trig === 'DEG') {
+            return val * Math.PI / 180;
+        } else if (this.trig === 'GRAD') {
+            return val * Math.PI / 200;
+        }
+        return val;
+    }
+
+    sin() {
+        if (this.right) {
+            this.right = this.convertAngle(this.right);
+            this.right = this.eval('Math.sin(' + this.right + ')');
+        }
+        else {
+            this.left = this.convertAngle(this.left);
+            this.left = this.eval('Math.sin(' + this.left + ')')
+        }
+        this.update_screen();
     }
 
     cos() {
-
+        //Añadir el shift para el acos, asin, atan
+        if (this.right) {
+            this.right = this.convertAngle(this.right);
+            this.right = this.eval('Math.cos(' + this.right + ')');
+        }
+        else {
+            this.left = this.convertAngle(this.left);
+            this.left = this.eval('Math.cos(' + this.left + ')')
+        }
+        this.update_screen();
     }
 
     tan() {
-
+        if (this.right) {
+            this.right = this.convertAngle(this.right);
+            this.right = this.eval('Math.tan(' + this.right + ')');
+        }
+        else {
+            this.left = this.convertAngle(this.left);
+            this.left = this.eval('Math.tan(' + this.left + ')')
+        }
+        this.update_screen();
     }
 
     tentox() {
@@ -312,7 +367,6 @@ class CalculadoraCienfitica extends CalculadoraMilan {
                 this.left = 'Math.log10(' + this.right + ')'
 
             } else {
-                Math.log10(this.left)
                 this.left = 'Math.log10(' + this.left + ')'
             }
         }
@@ -320,7 +374,11 @@ class CalculadoraCienfitica extends CalculadoraMilan {
     }
 
     exp() {
-
+        this.undoEval();
+        if (this.right) {
+            this.r
+        }
+        Math.expm1
     }
 
     mod() {
@@ -329,7 +387,28 @@ class CalculadoraCienfitica extends CalculadoraMilan {
 
     second() {
         this.shift = !this.shift;
-
+        if(this.shift) {
+            document.querySelector("input[value='x^2']").value = 'x^3';
+            document.querySelector("input[value='√']").value = '3√';
+            document.querySelector("input[value='x^y']").value = 'y√x';
+            document.querySelector("input[value='10^x']").value = '2^x';
+            document.querySelector("input[value='log']").value = 'ln';
+            document.querySelector("input[value='π']").value = 'e';
+            document.querySelector("input[value='sin']").value = 'sin-1';
+            document.querySelector("input[value='cos']").value = 'cos-1';
+            document.querySelector("input[value='tan']").value = 'tan-1';
+        } else {
+            document.querySelector("input[value='x^3']").value = 'x^2';
+            document.querySelector("input[value='3√']").value = '√';
+            document.querySelector("input[value='y√x']").value = 'x^y';
+            document.querySelector("input[value='2^x']").value = '10^x';
+            document.querySelector("input[value='ln']").value = 'log';
+            document.querySelector("input[value='e']").value = 'π';
+            document.querySelector("input[value='sin-1']").value = 'sin';
+            document.querySelector("input[value='cos-1']").value = 'cos';
+            document.querySelector("input[value='tan-1']").value = 'tan';
+        }
+        
     }
 
     del() {
@@ -351,7 +430,7 @@ class CalculadoraCienfitica extends CalculadoraMilan {
             this.op = '';
             this.left = '';
             this.right = '';
-            this.point = false;
+
         }
         if (val == 0) {
             return 1;
@@ -373,7 +452,7 @@ class CalculadoraCienfitica extends CalculadoraMilan {
 
     left_parentesis() {
         this.undoEval();
-        if(this.op) {
+        if (this.op) {
             this.right += "("
         }
         else {
@@ -385,11 +464,11 @@ class CalculadoraCienfitica extends CalculadoraMilan {
 
     right_parentesis() {
         this.undoEval();
-        if(this.open_parentesis !== 0) {
-            if(this.op) {
+        if (this.open_parentesis !== 0) {
+            if (this.op) {
                 this.right += ")"
                 this.left += this.op + this.right;
-                this.riht = '';
+                this.right = '';
                 this.op = '';
             }
             else {
@@ -402,7 +481,7 @@ class CalculadoraCienfitica extends CalculadoraMilan {
 
     pi() {
         this.undoEval();
-        if(this.right === "") {
+        if (this.right === "") {
             this.right = Math.PI;
         } else {
             this.left = Math.PI;
