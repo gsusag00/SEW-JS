@@ -205,7 +205,115 @@ class CalculadoraMilan {
 
 }
 
-var calc = new CalculadoraMilan();
+class CalculadoraCienfitica extends CalculadoraMilan {
+
+    trig = 'DEG';
+    shift = false;
+
+    constructor() {
+        super();
+    }
+
+    operacion(val) {
+        if(this.right) {
+            if(this.has_eval) {
+                this.right = '';
+                this.has_eval = !this.has_eval;
+            }
+            else {
+                this.left = this.left + this.op + this.right;
+                this.right = '';
+            }
+        }
+        this.op = val;
+        this.update_screen();
+    }
+
+    deg() {
+        this.trig = 'DEG';
+    }
+
+    hyp() {
+        this.trig = 'HYP';
+    }
+
+    fe() {
+
+    }
+
+    mc() {
+        //Memory clear
+    }
+
+    mr() {
+        //Memory recovery
+    }
+
+    ms() {
+        //Memory store
+    }
+
+    square() {
+
+    }
+
+    xtoy() {
+
+    }
+
+    sin() {
+
+    }
+
+    cos() {
+
+    }
+
+    tan() {
+
+    }
+
+    tentox() {
+
+    }
+
+    log() {
+
+    }
+
+    exp() {
+
+    }
+
+    mod() {
+
+    }
+
+    second() {
+        this.shift = !this.shift;
+    }
+
+    del() {
+
+    }
+
+    fact() {
+
+    }
+
+    left_parentesis() {
+
+    }
+
+    right_parentesis() {
+
+    }
+
+
+
+}
+
+var calc = new CalculadoraCienfitica();
 var ops = ['+', '-', '/', '*'];
 document.addEventListener('keydown', function (event) {
     if (event.shiftKey) {
