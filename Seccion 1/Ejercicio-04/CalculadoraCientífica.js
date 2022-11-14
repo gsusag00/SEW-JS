@@ -182,6 +182,10 @@ class CalculadoraMilan {
         } catch (err) {
             this.screen = 'Error';
             document.getElementById('screen').value = this.screen;
+            this.op = '';
+            this.left = '';
+            this.right = '';
+            this.point = false;
         }
         this.left = toEval;
     }
@@ -209,14 +213,15 @@ class CalculadoraCienfitica extends CalculadoraMilan {
 
     trig = 'DEG';
     shift = false;
+    open_parentesis = 0;
 
     constructor() {
         super();
     }
 
     operacion(val) {
-        if(this.right) {
-            if(this.has_eval) {
+        if (this.right) {
+            if (this.has_eval) {
                 this.right = '';
                 this.has_eval = !this.has_eval;
             }
@@ -254,7 +259,13 @@ class CalculadoraCienfitica extends CalculadoraMilan {
     }
 
     square() {
-
+        this.undoEval();
+        if (this.right) {
+            this.right = 'Math.pow(' + this.right + ',2)'
+        } else {
+            this.left = 'Math.pow(' + this.left + ',2)'
+        }
+        this.update_screen();
     }
 
     xtoy() {
@@ -274,11 +285,38 @@ class CalculadoraCienfitica extends CalculadoraMilan {
     }
 
     tentox() {
+        this.undoEval();
+        if (this.right) {
+            this.right = 'Math.pow(10,' + this.right + ')';
+        } else {
+            this.left = 'Math.pow(10,' + this.left + ')';
+        }
+        this.update_screen();
+    }
 
+    undoEval() {
+        if (this.has_eval) {
+            this.right = '';
+            this.op = '';
+            this.has_eval = false;
+        }
     }
 
     log() {
+        this.undoEval();
+        if (this.shift) {
 
+        }
+        else {
+            if (this.right) {
+                this.left = 'Math.log10(' + this.right + ')'
+
+            } else {
+                Math.log10(this.left)
+                this.left = 'Math.log10(' + this.left + ')'
+            }
+        }
+        this.update_screen();
     }
 
     exp() {
@@ -291,25 +329,86 @@ class CalculadoraCienfitica extends CalculadoraMilan {
 
     second() {
         this.shift = !this.shift;
+
     }
 
     del() {
-
+        if (this.right) {
+            this.right = this.right.slice(0, -1);
+        }
+        else if (this.op) {
+            this.op = ''
+        }
+        else if (this.left) {
+            this.left = this.left.slice(0, -1);
+        }
+        this.update_screen();
     }
 
-    fact() {
+    fact(val) {
+        if (val < 0) {
+            document.getElementById('pantalla').value = 'Error';
+            this.op = '';
+            this.left = '';
+            this.right = '';
+            this.point = false;
+        }
+        if (val == 0) {
+            return 1;
+        }
+        else {
+            return val * this.fact(val - 1);
+        }
+    }
 
+    factorial() {
+        this.undoEval();
+        if (this.right) {
+            this.right = this.fact(this.right);
+        } else {
+            this.left = this.fact(this.left);
+        }
+        this.update_screen();
     }
 
     left_parentesis() {
-
+        this.undoEval();
+        if(this.op) {
+            this.right += "("
+        }
+        else {
+            this.left += "(";
+        }
+        this.open_parentesis++;
+        this.update_screen();
     }
 
     right_parentesis() {
-
+        this.undoEval();
+        if(this.open_parentesis !== 0) {
+            if(this.op) {
+                this.right += ")"
+                this.left += this.op + this.right;
+                this.riht = '';
+                this.op = '';
+            }
+            else {
+                this.left += ")";
+            }
+            this.open_parentesis--;
+            this.update_screen();
+        }
     }
 
-
+    pi() {
+        this.undoEval();
+        if(this.right === "") {
+            this.right = Math.PI;
+        } else {
+            this.left = Math.PI;
+        }
+        this.update_screen();
+    }
 
 }
 
