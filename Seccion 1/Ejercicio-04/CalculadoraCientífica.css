@@ -24,7 +24,7 @@ form {
 
 input {
     border-radius: 1em;
-    font-size: 1em,
+    font-size: 1em;
 }
 
 input[type="text"] {
@@ -43,7 +43,6 @@ input[type="button"] {
     padding: 0.5em;
     margin: 0.07em;
     background-color: white;
-    font-size: 1em;
 }
 
 input[type="button"][value="F-E"] {
