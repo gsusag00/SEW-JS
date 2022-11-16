@@ -165,12 +165,14 @@ class CalculadoraMilan {
         this.doCalc();
         this.memory -= Number(this.left);
         this.update_screen();
+        console.log(this.memory);
     }
 
     m_plus() {
         this.doCalc();
         this.memory += Number(this.left);
         this.update_screen();
+        console.log(this.memory);
     }
 
     eval(val) {
@@ -216,6 +218,7 @@ class CalculadoraCienfitica extends CalculadoraMilan {
     shift = false;
     hypr = false;
     open_parentesis = 0;
+    f_e = false;
 
     constructor() {
         super();
@@ -236,22 +239,44 @@ class CalculadoraCienfitica extends CalculadoraMilan {
         this.update_screen();
     }
 
+    resta() {
+        if (this.op === 'e+') {
+            this.op = 'e-';
+            this.update_screen();
+        }
+        else {
+            super.resta();
+        }
+    }
+
+    suma() {
+        if (this.op === 'e-') {
+            this.op = 'e+';
+            this.update_screen();
+        }
+        else {
+            super.suma();
+        }
+    }
+
     deg() {
         if (this.trig === 'DEG') {
             this.trig = 'RAD';
+            document.querySelector("input[value='DEG']").value = 'RAD'
         }
         else if (this.trig === 'RAD') {
             this.trig = 'GRAD';
+            document.querySelector("input[value='RAD']").value = 'GRAD'
         }
         else {
             this.trig = 'DEG';
+            document.querySelector("input[value='GRAD']").value = 'DEG'
         }
-        console.log(this.trig);
     }
 
     hyp() {
         this.hypr = !this.hypr
-        if(this.hypr) {
+        if (this.hypr) {
             document.querySelector("input[value='sin']").value = 'sinh';
             document.querySelector("input[value='cos']").value = 'cosh';
             document.querySelector("input[value='tan']").value = 'tanh';
@@ -263,33 +288,97 @@ class CalculadoraCienfitica extends CalculadoraMilan {
     }
 
     fe() {
-
+        if (this.has_eval) {
+            this.undoEval();
+            this.has_eval = true;
+        }
+        this.f_e = !this.f_e;
+        if (this.f_e) {
+            var numb;
+            if (this.right) {
+                numb = Number(this.right);
+                this.right = numb.toExponential();
+            } else {
+                numb = Number(this.left);
+                this.left = numb.toExponential();
+            }
+        } else {
+            if (this.right) {
+                this.right = this.eval(this.right);
+            } else {
+                this.left = this.eval(this.left);
+            }
+        }
+        this.update_screen();
     }
 
     mc() {
-        //Memory clear
+        this.memory = 0;
+        console.log(this.memory);
     }
 
     mr() {
-        //Memory recovery
+        if (this.right) {
+            this.right = this.memory;
+        } else {
+            this.left = this.memory;
+        }
+        this.update_screen();
+        console.log(this.memory);
     }
 
     ms() {
-        //Memory store
+        if (this.right) {
+            this.memory = this.eval(this.right);
+        }
+        else {
+            this.memory = this.eval(this.left);
+        }
+        console.log(this.memory);
     }
 
     square() {
         this.undoEval();
+        this.has_eval = true;
+        var exp = 2;
+        if (this.shift) {
+            exp = 3;
+        }
         if (this.right) {
-            this.right = 'Math.pow(' + this.right + ',2)'
+            this.right = 'Math.pow(' + this.right + ',' + exp + ')'
         } else {
-            this.left = 'Math.pow(' + this.left + ',2)'
+            this.left = 'Math.pow(' + this.left + ',' + exp + ')'
+        }
+        this.update_screen();
+    }
+
+    sqrt() {
+        this.undoEval();
+        var form = 'Math.sqrt('
+        if (this.shift) {
+            form = 'Math.cbrt('
+        }
+        if (this.right) {
+            this.right = this.eval(form + this.right + ')');
+        }
+        else {
+            this.left = this.eval(form + this.left + ')');
         }
         this.update_screen();
     }
 
     xtoy() {
-
+        var power = '**'
+        if (this.shift) {
+            power = '** (1/'
+            this.open_parentesis++;
+        }
+        if (this.right) {
+            this.left += this.op + this.right;
+            this.right = '';
+        }
+        this.op = power;
+        this.update_screen();
     }
 
 
@@ -303,13 +392,21 @@ class CalculadoraCienfitica extends CalculadoraMilan {
     }
 
     sin() {
+        var sine = 'Math.sin'
+        if (this.shift) {
+            sine = 'Math.asin'
+        }
+        if (this.hypr) {
+            sine += 'h'
+        }
+        sine += '('
         if (this.right) {
             this.right = this.convertAngle(this.right);
-            this.right = this.eval('Math.sin(' + this.right + ')');
+            this.right = this.eval(sine + this.right + ')');
         }
         else {
             this.left = this.convertAngle(this.left);
-            this.left = this.eval('Math.sin(' + this.left + ')')
+            this.left = this.eval(sine + this.left + ')')
         }
         this.update_screen();
     }
@@ -341,10 +438,14 @@ class CalculadoraCienfitica extends CalculadoraMilan {
 
     tentox() {
         this.undoEval();
+        var not = 'Math.pow(10,';
+        if (this.shift) {
+            not = 'Math.pow(2,'
+        }
         if (this.right) {
-            this.right = 'Math.pow(10,' + this.right + ')';
+            this.right = not + this.right + ')';
         } else {
-            this.left = 'Math.pow(10,' + this.left + ')';
+            this.left = not + this.left + ')';
         }
         this.update_screen();
     }
@@ -359,35 +460,31 @@ class CalculadoraCienfitica extends CalculadoraMilan {
 
     log() {
         this.undoEval();
+        var loga = 'Math.log10('
         if (this.shift) {
-
+            Math.log()
+            loga = 'Math.log('
         }
-        else {
-            if (this.right) {
-                this.left = 'Math.log10(' + this.right + ')'
+        if (this.right) {
+            this.left = loga + this.right + ')'
 
-            } else {
-                this.left = 'Math.log10(' + this.left + ')'
-            }
+        } else {
+            this.left = loga + this.left + ')'
         }
         this.update_screen();
     }
 
     exp() {
-        this.undoEval();
-        if (this.right) {
-            this.r
-        }
-        Math.expm1
+        this.operacion('e+')
     }
 
     mod() {
-
+        this.operacion('%');
     }
 
     second() {
         this.shift = !this.shift;
-        if(this.shift) {
+        if (this.shift) {
             document.querySelector("input[value='x^2']").value = 'x^3';
             document.querySelector("input[value='√']").value = '3√';
             document.querySelector("input[value='x^y']").value = 'y√x';
@@ -408,17 +505,14 @@ class CalculadoraCienfitica extends CalculadoraMilan {
             document.querySelector("input[value='cos-1']").value = 'cos';
             document.querySelector("input[value='tan-1']").value = 'tan';
         }
-        
+
     }
 
     del() {
         if (this.right) {
             this.right = this.right.slice(0, -1);
         }
-        else if (this.op) {
-            this.op = ''
-        }
-        else if (this.left) {
+        else if (!this.op) {
             this.left = this.left.slice(0, -1);
         }
         this.update_screen();
@@ -441,7 +535,8 @@ class CalculadoraCienfitica extends CalculadoraMilan {
     }
 
     factorial() {
-        this.undoEval();
+        this.undoEval(); 
+        this.has_eval = true;
         if (this.right) {
             this.right = this.fact(this.right);
         } else {
@@ -481,25 +576,41 @@ class CalculadoraCienfitica extends CalculadoraMilan {
 
     pi() {
         this.undoEval();
-        if (this.right === "") {
-            this.right = Math.PI;
+        var val = Math.PI;
+        if (this.shift) {
+            val = Math.E
+        }
+        if (this.right) {
+            this.right = val.toString();
         } else {
-            this.left = Math.PI;
+            this.left = val.toString();
         }
         this.update_screen();
     }
 
 }
 
+
 var calc = new CalculadoraCienfitica();
 var ops = ['+', '-', '/', '*'];
 document.addEventListener('keydown', function (event) {
+    console.log('Control: ' + event.ctrlKey + ', Shift: ' + event.shiftKey + ', Key: ' + event.key);
     if (event.shiftKey) {
         if (event.key === '+') {
             calc.m_plus();
         }
         else if (event.key === '-') {
             calc.m_minus();
+        } else if (event.key === '(') {
+            calc.left_parentesis();
+        } else if (event.key === ')') {
+            calc.right_parentesis();
+        } else if (event.key === 'C') {
+            calc.mc();
+        } else if (event.key === '=') {
+            calc.igual();
+        } else if (event.key === '^^') {
+            calc.xtoy();
         }
     } else {
         if (!isNaN(event.key) || event.key === '.') {
@@ -507,9 +618,6 @@ document.addEventListener('keydown', function (event) {
         }
         else if (ops.includes(event.key)) {
             calc.operacion(event.key);
-        }
-        else if (event.key === '=') {
-            calc.igual();
         }
         else if (event.key === 's') {
             calc.sqrt();
@@ -525,6 +633,34 @@ document.addEventListener('keydown', function (event) {
         }
         else if (event.key === 'm') {
             calc.mrcpress();
+        } else if (event.key === 'Backspace') {
+            calc.del();
+        } else if (event.ctrlKey) {
+            calc.second();
+        } else if (event.key === 'r') {
+            calc.mr();
+        } else if (event.key === 'p') {
+            calc.pi();
+        } else if (event.key === 's') {
+            calc.ms();
+        } else if (event.key === 'o') {
+            calc.cos();
+        } else if (event.key === 'i') {
+            calc.sin();
+        } else if (event.key === 't') {
+            calc.tan();
+        } else if (event.key === 'x') {
+            calc.exp();
+        } else if (event.key === 'd') {
+            calc.mod();
+        } else if (event.key === 'l') {
+            calc.log();
+        } else if (event.key === 'f') {
+            calc.factorial();
+        } else if (event.key === '^2') {
+            calc.square();
+        } else if (event.key === '^x') {
+            calc.tentox();
         }
     }
 });
