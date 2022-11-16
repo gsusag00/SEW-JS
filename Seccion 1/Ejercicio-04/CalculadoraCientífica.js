@@ -611,6 +611,12 @@ document.addEventListener('keydown', function (event) {
             calc.igual();
         } else if (event.key === '^^') {
             calc.xtoy();
+        } else if (event.key === 'D') {
+            calc.deg();
+        } else if (event.key === 'H') {
+            calc.hyp();
+        } else if (event.key === 'F') {
+            calc.fe();
         }
     } else {
         if (!isNaN(event.key) || event.key === '.') {
