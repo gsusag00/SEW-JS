@@ -61,6 +61,6 @@ input[type="button"][value="Enter"]{
 
 @media (max-width: 600px) {
     section {
-        width: 80%;
+        width: 70%;
     }
 }
