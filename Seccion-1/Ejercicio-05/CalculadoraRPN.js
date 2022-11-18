@@ -165,14 +165,12 @@ class CalculadoraMilan {
         this.doCalc();
         this.memory -= Number(this.left);
         this.update_screen();
-        console.log(this.memory);
     }
 
     m_plus() {
         this.doCalc();
         this.memory += Number(this.left);
         this.update_screen();
-        console.log(this.memory);
     }
 
     eval(val) {
@@ -276,14 +274,28 @@ class CalculadoraCienfitica extends CalculadoraMilan {
 
     hyp() {
         this.hypr = !this.hypr
+
         if (this.hypr) {
-            document.querySelector("input[value='sin']").value = 'sinh';
-            document.querySelector("input[value='cos']").value = 'cosh';
-            document.querySelector("input[value='tan']").value = 'tanh';
+            if (this.shift) {
+                document.querySelector("input[value='asin']").value = 'asinh';
+                document.querySelector("input[value='acos']").value = 'acosh';
+                document.querySelector("input[value='atan']").value = 'atanh';
+            } else {
+                document.querySelector("input[value='sin']").value = 'sinh';
+                document.querySelector("input[value='cos']").value = 'cosh';
+                document.querySelector("input[value='tan']").value = 'tanh';
+            }
         } else {
-            document.querySelector("input[value='sinh']").value = 'sin';
-            document.querySelector("input[value='cosh']").value = 'cos';
-            document.querySelector("input[value='tanh']").value = 'tan';
+            if (this.shift) {
+                document.querySelector("input[value='asinh']").value = 'asin';
+                document.querySelector("input[value='acosh']").value = 'acos';
+                document.querySelector("input[value='atanh']").value = 'atan';
+            } else {
+                document.querySelector("input[value='sinh']").value = 'sin';
+                document.querySelector("input[value='cosh']").value = 'cos';
+                document.querySelector("input[value='tanh']").value = 'tan';
+            }
+
         }
     }
 
@@ -314,7 +326,6 @@ class CalculadoraCienfitica extends CalculadoraMilan {
 
     mc() {
         this.memory = 0;
-        console.log(this.memory);
     }
 
     mr() {
@@ -324,7 +335,6 @@ class CalculadoraCienfitica extends CalculadoraMilan {
             this.left = this.memory;
         }
         this.update_screen();
-        console.log(this.memory);
     }
 
     ms() {
@@ -334,7 +344,6 @@ class CalculadoraCienfitica extends CalculadoraMilan {
         else {
             this.memory = this.eval(this.left);
         }
-        console.log(this.memory);
     }
 
     square() {
@@ -382,11 +391,20 @@ class CalculadoraCienfitica extends CalculadoraMilan {
     }
 
 
-    convertAngle(val) {
+    convertAngleToRad(val) {
         if (this.trig === 'DEG') {
             return val * Math.PI / 180;
         } else if (this.trig === 'GRAD') {
             return val * Math.PI / 200;
+        }
+        return val;
+    }
+
+    convertRadToAngle(val) {
+        if (this.trig === 'DEG') {
+            return val * 180 / Math.PI;
+        } else if (this.trig === 'GRAD') {
+            return val * 200 / Math.PI;
         }
         return val;
     }
@@ -401,37 +419,82 @@ class CalculadoraCienfitica extends CalculadoraMilan {
         }
         sine += '('
         if (this.right) {
-            this.right = this.convertAngle(this.right);
+            if (!this.shift) {
+                this.right = this.convertAngleToRad(this.right);
+            }
             this.right = this.eval(sine + this.right + ')');
+            if (this.shift) {
+                this.right = this.convertRadToAngle(this.right)
+            }
         }
         else {
-            this.left = this.convertAngle(this.left);
+            if (!this.shift) {
+                this.left = this.convertAngleToRad(this.left);
+            }
             this.left = this.eval(sine + this.left + ')')
+            if (this.shift) {
+                this.left = this.convertRadToAngle(this.left);
+            }
         }
         this.update_screen();
     }
 
     cos() {
-        //Añadir el shift para el acos, asin, atan
+        var cosi = 'Math.cos'
+        if (this.shift) {
+            cos = 'Math.acos'
+        }
+        if (this.hypr) {
+            cosi += 'h'
+        }
+        cosi += '('
         if (this.right) {
-            this.right = this.convertAngle(this.right);
-            this.right = this.eval('Math.cos(' + this.right + ')');
+            if (!this.shift) {
+                this.right = this.convertAngleToRad(this.right);
+            }
+            this.right = this.eval(cosi + this.right + ')');
+            if (this.shift) {
+                this.right = this.convertRadToAngle(this.right);
+            }
         }
         else {
-            this.left = this.convertAngle(this.left);
-            this.left = this.eval('Math.cos(' + this.left + ')')
+            if (!this.shift) {
+                this.left = this.convertAngleToRad(this.left);
+            }
+            this.left = this.eval(cosi + this.left + ')');
+            if (this.shift) {
+                this.left = this.convertRadToAngle(this.left);
+            }
         }
         this.update_screen();
     }
 
     tan() {
+        var tani = 'Math.tan'
+        if (this.shift) {
+            tani = 'Math.atan'
+        }
+        if (this.hypr) {
+            tani += 'h'
+        }
+        tani += '('
         if (this.right) {
-            this.right = this.convertAngle(this.right);
-            this.right = this.eval('Math.tan(' + this.right + ')');
+            if (!this.shift) {
+                this.right = this.convertAngleToRad(this.right);
+            }
+            this.right = this.eval(tani + this.right + ')');
+            if (this.shift) {
+                this.right = this.convertRadToAngle(this.right);
+            }
         }
         else {
-            this.left = this.convertAngle(this.left);
-            this.left = this.eval('Math.tan(' + this.left + ')')
+            if (!this.shift) {
+                this.left = this.convertAngleToRad(this.left);
+            }
+            this.left = this.eval(tani + this.left + ')');
+            if (this.shift) {
+                this.left = this.convertRadToAngle(this.left);
+            }
         }
         this.update_screen();
     }
@@ -491,9 +554,16 @@ class CalculadoraCienfitica extends CalculadoraMilan {
             document.querySelector("input[value='10^x']").value = '2^x';
             document.querySelector("input[value='log']").value = 'ln';
             document.querySelector("input[value='π']").value = 'e';
-            document.querySelector("input[value='sin']").value = 'sin-1';
-            document.querySelector("input[value='cos']").value = 'cos-1';
-            document.querySelector("input[value='tan']").value = 'tan-1';
+            if (this.hypr) {
+                document.querySelector("input[value='sinh']").value = 'asinh';
+                document.querySelector("input[value='cosh']").value = 'acosh';
+                document.querySelector("input[value='tanh']").value = 'atanh';
+            } else {
+                document.querySelector("input[value='sin']").value = 'asin';
+                document.querySelector("input[value='cos']").value = 'acos';
+                document.querySelector("input[value='tan']").value = 'atan';
+            }
+
         } else {
             document.querySelector("input[value='x^3']").value = 'x^2';
             document.querySelector("input[value='3√']").value = '√';
@@ -501,9 +571,15 @@ class CalculadoraCienfitica extends CalculadoraMilan {
             document.querySelector("input[value='2^x']").value = '10^x';
             document.querySelector("input[value='ln']").value = 'log';
             document.querySelector("input[value='e']").value = 'π';
-            document.querySelector("input[value='sin-1']").value = 'sin';
-            document.querySelector("input[value='cos-1']").value = 'cos';
-            document.querySelector("input[value='tan-1']").value = 'tan';
+            if (this.hypr) {
+                document.querySelector("input[value='asinh']").value = 'sinh';
+                document.querySelector("input[value='acosh']").value = 'cosh';
+                document.querySelector("input[value='atanh']").value = 'tanh';
+            } else {
+                document.querySelector("input[value='asin']").value = 'sin';
+                document.querySelector("input[value='acos']").value = 'cos';
+                document.querySelector("input[value='atan']").value = 'tan';
+            }
         }
 
     }
@@ -535,7 +611,7 @@ class CalculadoraCienfitica extends CalculadoraMilan {
     }
 
     factorial() {
-        this.undoEval(); 
+        this.undoEval();
         this.has_eval = true;
         if (this.right) {
             this.right = this.fact(this.right);
@@ -590,8 +666,265 @@ class CalculadoraCienfitica extends CalculadoraMilan {
 
 }
 
+class CalculadoraRPN extends CalculadoraCienfitica {
 
-var calc = new CalculadoraCienfitica();
+    pila = new Pila();
+
+
+    constructor() {
+        super();
+    }
+
+    digito(x) {
+        super.digito(x);
+    }
+
+    igual() {
+        this.pila.push(this.left)
+        this.updateTA();
+    }
+
+    operacion(val) {
+        if (this.pila.size() >= 2) {
+            var op1 = this.pila.pop();
+            var op2 = this.pila.pop();
+            var res;
+            if (val === '+') {
+                res = Number(op1) + Number(op2);
+
+            } else if (val === '-') {
+                res = Number(op1) - Number(op2);
+            } else if (val === '*') {
+                res = Number(op1) * Number(op2);
+            } else {
+                res = Number(op1) / Number(op2);
+            }
+            this.pila.push(res);
+            this.updateTA();
+        }
+    }
+
+    square() {
+        var exp = 2;
+        if (this.shift) {
+            exp = 3
+        }
+        var val;
+        if (this.left) {
+            val = Math.pow(this.left, exp);
+        } else {
+            var val = this.pila.pop();
+            val = Math.pow(val, exp);
+        }
+        this.pila.push(val);
+        this.updateTA();
+    }
+
+    sqrt() {
+        var func = Math.sqrt;
+        if (this.shift) {
+            func = Math.cbrt;
+        }
+        var val;
+        if (this.left) {
+            val = func(this.left);
+            this.pila.push(this.left);
+        } else {
+            var val = this.pila.pop();
+            val = func(val);
+            this.pila.push(val);
+        }
+        this.updateTA();
+    }
+
+    tentox() {
+        var num = 10;
+        if (this.shift) {
+            num = 2;
+        }
+        var val;
+        if (this.left) {
+            val = Math.pow(num, this.left);
+        } else {
+            var val = this.pila.pop();
+            val = Math.pow(num, val);
+        }
+        this.pila.push(val);
+        this.updateTA();
+    }
+
+    log() {
+        var func = Math.log10;
+        if (this.shift) {
+            func = Math.log;
+        }
+        var val;
+        if (this.left) {
+            val = func(this.left);
+        } else {
+            val = this.pila.pop();
+            val = func(val);
+        }
+        this.pila.push(val);
+        this.updateTA();
+    }
+
+    factorial() {
+        var val;
+        if (this.left) {
+            val = this.fact(this.left);
+        } else {
+            val = this.pila.pop();
+            val = this.fact(val);
+        }
+        this.pila.push(val);
+        this.updateTA();
+    }
+
+    trig_op(func) {
+        var val;
+        if (this.left) {
+            val = this.left;
+            if (!this.shift && !this.hypr) {
+                val = this.convertAngleToRad(val)
+            }
+            val = func(val);
+            if (this.shift && this.hypr) {
+                val = this.convertRadToAngle(val)
+            }
+        } else {
+            val = this.pila.pop();
+            if (!this.shift && !this.hypr) {
+                val = this.convertAngleToRad(val)
+            }
+            val = func(val);
+            if (!(this.shift && this.hypr)) {
+                val = this.convertRadToAngle(val)
+            }
+        }
+        
+        this.pila.push(val);
+    }
+
+    sin() {
+        var func = Math.sin;
+        if (this.shift && this.hypr) {
+            func = Math.asinh;
+        } else if (this.shift) {
+            func = Math.asin;
+        } else if (this.hypr) {
+            func = Math.sinh;
+        }
+        this.trig_op(func)
+        this.updateTA();
+    }
+
+    cos() {
+        var func = Math.cos;
+        if (this.shift && this.hypr) {
+            func = Math.acosh;
+        } else if (this.shift) {
+            func = Math.acos;
+        } else if (this.hypr) {
+            func = Math.cosh;
+        }
+        this.trig_op(func)
+        this.updateTA();
+    }
+
+    tan() {
+        var func = Math.tan;
+        if (this.shift && this.hypr) {
+            func = Math.atanh;
+        } else if (this.shift) {
+            func = Math.atan;
+        } else if (this.hypr) {
+            func = Math.tanh;
+        }
+        this.trig_op(func)
+        this.updateTA();
+    } 
+
+    exp() {
+        if(this.pila.size() >= 2) {
+            var op1 = this.pila.pop();
+            var op2 = this.pila.pop();
+            var res = Number(op1) * Math.pow(10,op2)
+            this.pila.push(res)
+        }
+        this.updateTA();
+    }
+
+    mod() {
+        if(this.pila.size() >= 2) {
+            var op1 = this.pila.pop();
+            var op2 = this.pila.pop();
+            var res = Number(op1) % Number(op2)
+            this.pila.push(res)
+        }
+        this.updateTA();
+    }
+
+    updateTA() {
+        document.getElementById('pila').innerHTML = this.pila.print();
+        document.getElementById('pantalla').value = '';
+        this.left = ''
+    }
+}
+
+class Pila {
+
+    stack = [];
+
+    constructor() {
+    }
+
+    pop() {
+        return this.stack.pop();
+    }
+
+    push(val) {
+        this.stack.push(val);
+    }
+
+    top() {
+        return this.stack[this.stack.length - 1];
+    }
+
+    size() {
+        return this.stack.length;
+    }
+
+    get(pos) {
+        if (pos >= 0 && pos < this.stack.length) {
+            return this.stack[pos];
+        }
+    }
+
+    print() {
+
+        var toprint = ""
+        var pos = this.stack.length;
+        for (var i = this.stack.length - 1; i >= 0; i--) {
+            toprint += this.printline(i, pos)
+            pos--;
+        }
+        return toprint;
+    }
+
+    printline(item, pos) {
+        var realpos = this.stack.length - 1 - item;
+        return '\n' + Number(pos) + ':\t' + this.stack[realpos]
+    }
+
+    clear() {
+        this.stack = [];
+    }
+}
+
+
+
+var calc = new CalculadoraRPN();
 var ops = ['+', '-', '/', '*'];
 document.addEventListener('keydown', function (event) {
     console.log('Control: ' + event.ctrlKey + ', Shift: ' + event.shiftKey + ', Key: ' + event.key);

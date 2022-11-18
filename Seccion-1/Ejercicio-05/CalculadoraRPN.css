@@ -28,7 +28,6 @@ input {
 
 input[type="text"] {
     grid-column: span 5;
-    height:3em;
     margin-bottom: 1em;
 }
 
@@ -39,17 +38,22 @@ label{
 }
 
 input[type="button"] {
-    padding: 0.5em;
     margin: 0.07em;
     background-color: white;
 }
 
+textarea {
+    grid-column: span 5;
+    resize:vertical;
+    margin-bottom: 1em;
+    text-align: right;
+    height: 10em;
+}
+
 input[type="button"][value="F-E"]{
     grid-column: 3 / span 3;
-    grid-row: 3;
 }
 
 input[type="button"][value="Enter"]{
     grid-column: 3 / span 3;
-    grid-row: 7;
 }

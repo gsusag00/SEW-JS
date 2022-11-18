@@ -165,14 +165,12 @@ class CalculadoraMilan {
         this.doCalc();
         this.memory -= Number(this.left);
         this.update_screen();
-        console.log(this.memory);
     }
 
     m_plus() {
         this.doCalc();
         this.memory += Number(this.left);
         this.update_screen();
-        console.log(this.memory);
     }
 
     eval(val) {
@@ -314,7 +312,6 @@ class CalculadoraCienfitica extends CalculadoraMilan {
 
     mc() {
         this.memory = 0;
-        console.log(this.memory);
     }
 
     mr() {
@@ -324,7 +321,6 @@ class CalculadoraCienfitica extends CalculadoraMilan {
             this.left = this.memory;
         }
         this.update_screen();
-        console.log(this.memory);
     }
 
     ms() {
@@ -334,7 +330,6 @@ class CalculadoraCienfitica extends CalculadoraMilan {
         else {
             this.memory = this.eval(this.left);
         }
-        console.log(this.memory);
     }
 
     square() {
