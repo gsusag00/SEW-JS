@@ -10,6 +10,7 @@
 [Files](https://github.com/gsusag00/SEW-JS/tree/main/Seccion-1/Ejercicio-03)  
 [Pages](https://gsusag00.github.io/SEW-JS/Seccion-1/Ejercicio-03/CalculadoraMilan.html)
 ## ejercicio4
+[Files](https://github.com/gsusag00/SEW-JS/tree/main/Seccion-1/Ejercicio-04)  
 [Pages](https://gsusag00.github.io/SEW-JS/Seccion-1/Ejercicio-04/CalculadoraCienfitica.html)
 ## ejercicio5
 [Files](https://github.com/gsusag00/SEW-JS/tree/main/Seccion-1/Ejercicio-05)  
