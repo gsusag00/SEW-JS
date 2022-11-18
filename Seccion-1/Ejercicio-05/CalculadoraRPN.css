@@ -44,7 +44,12 @@ input[type="button"] {
     background-color: white;
 }
 
-input[type="button"][value="+"] {
-    grid-column: 4;
-    grid-row: 6/8;
+input[type="button"][value="F-E"]{
+    grid-column: 3 / span 3;
+    grid-row: 3;
+}
+
+input[type="button"][value="Enter"]{
+    grid-column: 3 / span 3;
+    grid-row: 7;
 }

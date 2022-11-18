@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- Metadatos de los documentos HTML5 -->
+    <meta name="author" content="Jesús Alonso Gárcia">
+    <!-- Definición de la ventana grafica -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Titulo de la página -->
+    <title>Ejercicio 5</title>
+    <!-- añadir el elemento link de enlace a laa hoja de estilo dentro del <head> del documento html -->
+    <link rel="stylesheet" type="text/css" href="CalculadoraRPN.css">
+    <script src="CalculadoraRPN.css"></script>
+</head>
+
+<body>
+    <!-- Calculadora-->
+    <section>
+        <form>
+            <label for="pantalla">Resultado</label>
+            <input type="text" id="pantalla" readonly>
+            
+            <input type="button" value="DEG" onclick="calc.deg()"> 
+            <input type="button" value="HYP" onclick="calc.hyp()"> 
+            <input type="button" value="F-E" onclick="calc.fe()">
+            
+            <input type="button" value="MC" onclick="calc.mc()"> 
+            <input type="button" value="MR" onclick="calc.mr()"> 
+            <input type="button" value="M+" onclick="calc.m_plus()"> 
+            <input type="button" value="M-" onclick="calc.m_minus()"> 
+            <input type="button" value="MS" onclick="calc.ms()"> 
+            
+            <input type="button" value="2nd" onclick="calc.second()"> 
+            <input type="button" value="π" onclick="calc.pi()"> 
+            <input type="button" value="CE" onclick="calc.cepress()"> 
+            <input type="button" value="C" onclick="calc.cpress()"> 
+            <input type="button" value="Del" onclick="calc.del()"> 
+
+            <input type="button" value="x^2" onclick="calc.square()"> 
+            <input type="button" value="sin" onclick="calc.sin()"> 
+            <input type="button" value="cos" onclick="calc.cos()"> 
+            <input type="button" value="tan" onclick="calc.tan()"> 
+            <input type="button" value="mod" onclick="calc.mod()"> 
+            
+            <input type="button" value="√" onclick="calc.sqrt()">
+            <input type="button" value="exp" onclick="calc.exp()"> 
+            <input type="button" value="Enter" onclick="calc.igual()"> 
+            
+            <input type="button" value="x^y" onclick="calc.xtoy()"> 
+            <input type="button" value="7" onclick="calc.numeros(7)"> 
+            <input type="button" value="8" onclick="calc.numeros(8)"> 
+            <input type="button" value="9" onclick="calc.numeros(9)"> 
+            <input type="button" value="/" onclick="calc.division()"> 
+            
+            <input type="button" value="10^x" onclick="calc.tentox()"> 
+            <input type="button" value="4" onclick="calc.numeros(4)"> 
+            <input type="button" value="5" onclick="calc.numeros(5)"> 
+            <input type="button" value="6" onclick="calc.numeros(6)"> 
+            <input type="button" value="*" onclick="calc.mult()"> 
+            
+            <input type="button" value="log" onclick="calc.log()"> 
+            <input type="button" value="1" onclick="calc.numeros(1)"> 
+            <input type="button" value="2" onclick="calc.numeros(2)"> 
+            <input type="button" value="3" onclick="calc.numeros(3)"> 
+            <input type="button" value="-" onclick="calc.resta()"> 
+            
+            <input type="button" value="n!" onclick="calc.factorial()"> 
+            <input type="button" value="+/-" onclick="calc.changesign()"> 
+            <input type="button" value="0" onclick="calc.numeros(0)"> 
+            <input type="button" value="." onclick="calc.punto()"> 
+            <input type="button" value="+" onclick="calc.suma()"> 
+        </form>
+    </section>
+</body>
+
+</html>
