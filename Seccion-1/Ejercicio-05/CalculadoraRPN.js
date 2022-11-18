@@ -870,6 +870,11 @@ class CalculadoraRPN extends CalculadoraCienfitica {
         document.getElementById('pantalla').value = '';
         this.left = ''
     }
+
+    cpress() {
+        this.pila.clear();
+        this.updateTA();
+    }
 }
 
 class Pila {
