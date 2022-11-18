@@ -7,7 +7,7 @@ body {
 }
 
 section {
-    width:50%;
+    width: 20em;
     height: 60%;
 }
 
@@ -56,4 +56,11 @@ input[type="button"][value="F-E"]{
 
 input[type="button"][value="Enter"]{
     grid-column: 3 / span 3;
+}
+
+
+@media (max-width: 600px) {
+    section {
+        width: 50%;
+    }
 }
