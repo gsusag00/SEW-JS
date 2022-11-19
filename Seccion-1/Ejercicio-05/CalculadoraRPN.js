@@ -728,7 +728,7 @@ class CalculadoraRPN extends CalculadoraCienfitica {
         var val;
         if (this.left) {
             val = func(this.left);
-            this.pila.push(this.left);
+            this.pila.push(val);
         } else {
             var val = this.pila.pop();
             val = func(val);
