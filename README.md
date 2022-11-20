@@ -1,5 +1,9 @@
 # SEW
 
+## TODO
+
+Hacer el report con los warnings de css
+
 ## ejercicio1
 [Files](https://github.com/gsusag00/SEW-JS/tree/main/Seccion-1/Ejercicio-01)  
 [Pages](https://gsusag00.github.io/SEW-JS/Seccion-1/Ejercicio-01/Ejercicio1.html)
