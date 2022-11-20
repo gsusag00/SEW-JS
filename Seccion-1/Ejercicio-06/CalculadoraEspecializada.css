@@ -40,6 +40,7 @@ label{
 input[type="button"] {
     margin: 0.07em;
     background-color: white;
+    margin: 0.2em;
 }
 
 textarea {
@@ -58,8 +59,9 @@ input[type="button"][value="Enter"]{
     grid-column: 3 / span 3;
 }
 
+
 @media (max-width: 600px) {
     section {
-        width: 70%;
+        width: 80%;
     }
 }

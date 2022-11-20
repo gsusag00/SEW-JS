@@ -46,7 +46,7 @@ input[type="button"] {
 
 input[type="button"][value="+"] {
     grid-column: 4;
-    grid-row: 6/8;
+    grid-row: 6/ span 2;
 }
 
 @media (max-width: 600px) {

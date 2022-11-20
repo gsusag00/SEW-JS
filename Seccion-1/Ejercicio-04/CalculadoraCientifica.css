@@ -46,7 +46,6 @@ input[type="button"] {
 
 input[type="button"][value="F-E"] {
     grid-column: 3 / span 3;
-    grid-row: 3;
 }
 
 @media (max-width: 600px) {
