@@ -1,0 +1,65 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: gray;
+    color:white;
+}
+
+section {
+    width: 20em;
+    height: 60%;
+}
+
+form {
+    display: grid;
+    grid-template-columns: 20% 20% 20% 20% 20%;
+    background-color:black;
+    border: 0.15em solid blue;
+    padding: 1.5em;
+    border-radius: 1.5em;
+
+}
+
+input {
+    border-radius: 1em;
+    font-size: 1em;
+}
+
+input[type="text"] {
+    grid-column: span 5;
+    margin-bottom: 1em;
+}
+
+label{
+    grid-column: span 5;
+    font-size: 1.5em;
+    margin-bottom: 0.5em;
+}
+
+input[type="button"] {
+    margin: 0.07em;
+    background-color: white;
+}
+
+textarea {
+    grid-column: span 5;
+    resize:vertical;
+    margin-bottom: 1em;
+    text-align: right;
+    height: 10em;
+}
+
+input[type="button"][value="F-E"]{
+    grid-column: 3 / span 3;
+}
+
+input[type="button"][value="Enter"]{
+    grid-column: 3 / span 3;
+}
+
+@media (max-width: 600px) {
+    section {
+        width: 70%;
+    }
+}

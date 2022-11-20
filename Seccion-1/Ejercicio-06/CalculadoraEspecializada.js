@@ -802,7 +802,7 @@ class CalculadoraRPN extends CalculadoraCienfitica {
                 val = this.convertRadToAngle(val)
             }
         }
-        
+
         this.pila.push(val);
     }
 
@@ -843,20 +843,20 @@ class CalculadoraRPN extends CalculadoraCienfitica {
         }
         this.trig_op(func)
         this.updateTA();
-    } 
+    }
 
     exp() {
-        if(this.pila.size() >= 2) {
+        if (this.pila.size() >= 2) {
             var op1 = this.pila.pop();
             var op2 = this.pila.pop();
-            var res = Number(op1) * Math.pow(10,op2)
+            var res = Number(op1) * Math.pow(10, op2)
             this.pila.push(res)
         }
         this.updateTA();
     }
 
     mod() {
-        if(this.pila.size() >= 2) {
+        if (this.pila.size() >= 2) {
             var op1 = this.pila.pop();
             var op2 = this.pila.pop();
             var res = Number(op1) % Number(op2)
@@ -927,9 +927,244 @@ class Pila {
     }
 }
 
+class CalculadoraMatematica extends CalculadoraRPN {
+
+    funcMode = false;
+    readyToSolveFunc = false;
+    limitReady = false;
+    integralReady = false;
+
+    constructor() {
+        super();
+    }
+
+    cpress() {
+        this.funcMode = false;
+        this.readyToSolveFunc = false;
+        super.cpress();
+    }
+
+    createFunc() {
+        if (this.readyToSolveFunc) {
+            var val = this.pila.pop();
+            var func = this.pila.pop();
+            var res = func.solve(val);
+            this.pila.push(res);
+            this.readyToSolveFunc = false;
+        } else {
+            this.pila.push(new Func());
+            this.funcMode = true;
+        }
+        this.updateTA();
+    }
+
+    igual() {
+        if (!this.funcMode) {
+            super.igual();
+        } else {
+            this.funcMode = false;
+            this.readyToSolveFunc = true;
+            var func = this.pila.pop();
+            func.setFunction(this.left);
+            this.pila.push(func);
+            this.left = 0;
+            this.updateTA();
+        }
+    }
+
+    x() {
+        this.left += 'x'
+        this.update_screen();
+    }
+
+    operacion(val) {
+        if (!this.funcMode) {
+            if (this.pila.size() >= 2) {
+                var op1 = this.pila.pop();
+                var op2 = this.pila.pop();
+                var res;
+                if (val === '+') {
+                    res = Number(op1) + Number(op2);
+
+                } else if (val === '-') {
+                    res = Number(op1) - Number(op2);
+                } else if (val === '*') {
+                    res = Number(op1) * Number(op2);
+                } else {
+                    res = Number(op1) / Number(op2);
+                }
+                this.pila.push(res);
+                this.updateTA();
+            }
+        } else {
+            this.left += " " + val + " ";
+            this.update_screen();
+        }
+    }
+
+    square() {
+        if (!this.funcMode) {
+            super.square();
+        } else {
+            this.left += '^'
+            this.update_screen();
+        }
+    }
+
+    der() {
+        if(this.readyToSolveFunc) {
+            var func = this.pila.pop();
+            var res = func.der();
+            func.setFunction(res);
+            func.name = "f'(x)"
+            this.pila.push(func);
+        }
+        this.updateTA();
+    }
+
+    lim() {
+        if(this.limitReady) {
+            var func = this.pila.pop()
+            var pieces = func.split('>')
+            var pieces2 = pieces[1].split('\t')
+            var num = Number(pieces2[0])
+            var funcion = new Func();
+            funcion.setFunction(pieces2[1])
+            var res = funcion.solve(num)
+            this.pila.push(res);
+            this.limitReady = false;
+        } else if(this.readyToSolveFunc) {
+            var lim = this.pila.pop()
+            var func = this.pila.pop()
+            var res = "lim x->" + lim + "\t" + func.getFunction();
+            this.limitReady = true;
+            this.pila.push(res);
+        }
+        this.updateTA();
+    }
+}
+
+class Func {
 
 
-var calc = new CalculadoraRPN();
+    name = "f(x)"
+    funcion = '';
+    der = ''
+
+    constructor() {
+
+    }
+
+    setFunction(funcion) {
+        this.funcion = funcion;
+    }
+
+    getFunction() {
+        return this.funcion;
+    }
+
+    setDer(der) {
+        this.der = der;
+    }
+
+    getDer() {
+        return this.der;
+    }
+
+    toString() {
+        return this.name + '=' + this.funcion;
+    }
+
+    solve(x) {
+        var pieces = this.funcion.split(" ");
+        if (pieces.length === 1) {
+            if (!pieces[0].includes('x')) {
+                return pieces[0];
+            }
+            //Es solo un numero
+            if (pieces[0] === 'x') {
+                return x;
+            }
+            var hasx = pieces[0].split('x')
+            var numb = Number(hasx[0])
+            return numb * x;
+        } else if (pieces.length === 3) {
+            // x + 1
+            var op1 = pieces[0];
+            var op = pieces[1];
+            var op2 = pieces[2];
+            op1 = this.parseX(pieces[0],x);
+            return this.doOp(op1,op2,op)
+        } else if (pieces.length === 5) {
+            var sqr = pieces[0];
+            var op1 = pieces[1];
+            var sec = pieces[2];
+            var op2 = pieces[3];
+            var thi = pieces[4];
+            //First.
+            var res1;
+            var first_pieces = sqr.split('^');
+            res1 = this.parseX(first_pieces[0],x)
+            res1 = Math.pow(res1,Number(first_pieces[1]))
+            var res2 = this.parseX(sec,x);
+            var res = this.doOp(res1,res2,op1);
+            res = this.doOp(res,thi,op2);
+            return res;
+        }
+    }
+
+    doOp(op1,op2,op) {
+        if (op === '+') {
+            return Number(op1) + Number(op2);
+        } else if (op === '-') {
+            return Number(op1) - Number(op2);
+        } else if (op === '*') {
+            return Number(op1) * Number(op2);
+        } else if (op === '/') {
+            return Number(op1) / Number(op2);
+        }
+    }
+
+    parseX(piece, x) {
+        if (piece === 'x') {
+            return x;
+        } else if (piece.includes('x')) {
+            var hasx = piece.split('x')
+            var numb = Number(hasx[0])
+            return numb * x;
+        }
+    }
+
+    der() {
+        var pieces = this.funcion.split(" ");
+        if(pieces.length === 1) {
+            if (!pieces[0].includes('x')) {
+                return '0';
+            }
+            var res = this.parseX(pieces[0],1);
+            return res + ''
+        } else if(pieces.length === 3) {
+            var op1 = pieces[0];
+            op1 = this.parseX(pieces[0],1);
+            return op1 + '';
+        } else if(pieces.length === 5) {
+            var sqr = pieces[0];
+            var op1 = pieces[1];
+            var sec = pieces[2];
+            //First.
+            var res1;
+            var first_pieces = sqr.split('^');
+            res1 = this.parseX(first_pieces[0],1)
+            res1 = res1 * Number(first_pieces[1])
+            var res2 = this.parseX(sec,1);
+            return res1 + 'x ' + op1 + ' ' + res2;
+        }
+    }
+}
+
+
+
+var calc = new CalculadoraMatematica();
 var ops = ['+', '-', '/', '*'];
 document.addEventListener('keydown', function (event) {
     console.log('Control: ' + event.ctrlKey + ', Shift: ' + event.shiftKey + ', Key: ' + event.key);
