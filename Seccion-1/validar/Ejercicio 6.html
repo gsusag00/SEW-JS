@@ -1,31 +1,26 @@
 <!DOCTYPE html>
-
-<html lang="es">
-
-<head>
+<html lang="es"><head>
     <meta charset="UTF-8">
     <!-- Metadatos de los documentos HTML5 -->
     <meta name="author" content="Jesús Alonso Gárcia">
     <!-- Definición de la ventana grafica -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Titulo de la página -->
-    <title>Ejercicio 5</title>
+    <title>Ejercicio 6</title>
     <!-- añadir el elemento link de enlace a laa hoja de estilo dentro del <head> del documento html -->
-    <link rel="stylesheet" type="text/css" href="CalculadoraRPN.css">
-    <script src="CalculadoraRPN.js"></script>
+    <link rel="stylesheet" type="text/css" href="CalculadoraEspecializada.css">
+    <script src="CalculadoraEspecializada.js"></script>
 </head>
 
 <body>
     <!-- Calculadora-->
     <section>
-        <h1> Calculadora RPN </h1>
         <form>
             <label for="pila">Values</label>
-            <textarea id='pila' readonly >
-
-            </textarea>
+            <textarea id="pila" readonly="">
+1:	56552</textarea>
             <label for="pantalla">Resultado</label>
-            <input type="text" id="pantalla" readonly>
+            <input type="text" id="pantalla" readonly="">
             
             <input type="button" value="DEG" onclick="calc.deg()"> 
             <input type="button" value="HYP" onclick="calc.hyp()"> 
@@ -42,6 +37,13 @@
             <input type="button" value="CE" onclick="calc.cepress()"> 
             <input type="button" value="C" onclick="calc.cpress()"> 
             <input type="button" value="Del" onclick="calc.del()"> 
+
+            <input type="button" value="f(x)" onclick="calc.createFunc()"> 
+            <input type="button" value="f'(x)" onclick="calc.der()"> 
+            <input type="button" value="Int" onclick="calc.integral()" disabled=""> 
+            <input type="button" value="Lim" onclick="calc.lim()">
+            <input type="button" value="x" onclick="calc.x()">
+            
 
             <input type="button" value="x^2" onclick="calc.square()"> 
             <input type="button" value="sin" onclick="calc.sin()"> 
@@ -78,6 +80,6 @@
             <input type="button" value="+" onclick="calc.suma()"> 
         </form>
     </section>
-</body>
 
-</html>
+
+</body></html>
