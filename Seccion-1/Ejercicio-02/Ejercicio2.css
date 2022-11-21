@@ -1,24 +1,42 @@
-
+/*
+    Especifidad: 0 0 1
+*/
 body {
     background-color: black;
     color: white;
 }
 
+/*
+    Especifidad: 0 0 1
+*/
 h1 {
     font-weight: bolder;
 }
 
+/*
+    Especifidad: 0 0 1
+*/
 h2 {
     font-weight: bold;
 }
 
+/*
+    Especifidad: 0 0 1
+*/
 h3 {
     font-style: italic;
 }
+
+/*
+    Especifidad: 0 0 1
+*/
 h4 {
     font-style: oblique;
 }
 
+/*
+    Especifidad: 0 0 1
+*/
 p {
     font-size: 1em;
 }

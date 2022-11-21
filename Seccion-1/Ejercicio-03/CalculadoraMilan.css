@@ -1,3 +1,8 @@
+
+
+/*
+        Especifidad: 0 0 1
+*/
 body {
     display: flex;
     flex-direction: column;
@@ -6,11 +11,17 @@ body {
     color:white;
 }
 
+/*
+        Especifidad: 0 0 1
+*/
 section {
     width:50%;
     height: 60%;
 }
 
+/*
+        Especifidad: 0 0 1
+*/
 form {
     display: grid;
     grid-template-columns: 20% 20% 20% 20% 20%;
@@ -21,35 +32,54 @@ form {
 
 }
 
+/*
+        Especifidad: 0 0 1
+*/
 input {
     border-radius: 1em;
     font-size: 1em;
 }
 
-input[type="text"] {
-    grid-column: span 5;
-    height:3em;
-    margin-bottom: 1em;
-}
 
+/*
+Especifidad: 0 0 1
+*/
 label{
     grid-column: span 5;
     font-size: 1.5em;
     margin-bottom: 0.5em;
 }
 
+/*
+        Especifidad: 0 1 1
+*/
+input[type="text"] {
+    grid-column: span 5;
+    height:3em;
+    margin-bottom: 1em;
+}
+
+/*
+    Especifidad: 0 1 1
+*/
 input[type="button"] {
     padding: 0.5em;
     margin: 0.07em;
     background-color: white;
 }
 
+/*
+    Especifidad: 0 2 1
+*/
 input[type="button"][value="+"] {
     grid-column: 4;
     grid-row: 6/ span 2;
 }
 
 @media (max-width: 600px) {
+    /*
+        Especifidad: 0 0 1
+    */
     section {
         width: 70%;
     }

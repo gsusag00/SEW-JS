@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- Metadatos de los documentos HTML5 -->
+    <meta name="author" content="Jesús Alonso Gárcia">
+    <!-- Definición de la ventana grafica -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Titulo de la página -->
+    <title>Ejercicio 7</title>
+    <!-- añadir el elemento link de enlace a laa hoja de estilo dentro del <head> del documento html -->
+    <link rel="stylesheet" type="text/css" href="Ejercicio7.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="Ejercicio7.JS"></script>
+</head>
+
+<body>
+    <h1>
+        Mostrar y ocultar elementos
+    </h1>
+    <section>
+        <h2>Eliminando parrafos</h2>
+        <p> Estos parrafos se van a eliminar</p>
+        <p> Hola buenas</p>
+        <p> Que tal?</p>
+        <button onclick="oc.ocultar('p')">Ocultar parrafos</button>
+        <button onclick="oc.mostrar('p')">Mostrar parrafos</button>
+
+        
+    </section>
+    <button onclick="oc.ocultar('section')">Ocultar seccion</button>
+    <button onclick="oc.mostrar('section')">Mostrar seccion</button>
+
+</body>
+
+</html>
