@@ -21,17 +21,75 @@
         Mostrar y ocultar elementos
     </h1>
     <section>
-        <h2>Eliminando parrafos</h2>
+        <h2>Eliminar elementos</h2>
         <p> Estos parrafos se van a eliminar</p>
         <p> Hola buenas</p>
         <p> Que tal?</p>
         <button onclick="oc.ocultar('p')">Ocultar parrafos</button>
         <button onclick="oc.mostrar('p')">Mostrar parrafos</button>
 
-        
+        <h2> Modificar elementos</h2>
+        <aside>
+            <picture>
+                <img src="vela.jpg" alt="Una vela">
+            </picture>
+        </aside>
+        <button onclick="oc.modify()">Cambiar a bombilla</button>
+        <button onclick="oc.restore()">Cambiar a vela</button>
+
+        <h2>Añadir y borrar elementos</h2>
+        <table>
+            <caption> Estado actual de las versiones disponibles de Node.js</caption>
+            <tr>
+                <th>Versión</th>
+                <th>Estatus</th>
+                <th>Lanzamiento Inicial</th>
+                <th>Comienzo del mantenimiento</th>
+                <th>Fin de mantenimiento</th>
+            </tr>
+            <tr>
+                <td>14.x</td>
+                <td>Mantenimiento</td>
+                <td>2020-04-21</td>
+                <td>2021-10-19</td>
+                <td>2023-04-30</td>
+            </tr>
+            <tr>
+                <td>16.x</td>
+                <td>LTS activo</td>
+                <td>2021-04-20</td>
+                <td>2022-10-18</td>
+                <td>2022-09-11</td>
+            </tr>
+            <tr>
+                <td>18.x</td>
+                <td>Versión actual</td>
+                <td>2022-04-19</td>
+                <td>2023-10-18</td>
+                <td>2025-04-30</td>
+            </tr>
+            <tr>
+                <td>19.x</td>
+                <td>Pendiente</td>
+                <td>2022-10-18</td>
+                <td>2023-04-01</td>
+                <td>2023-06-01</td>
+            </tr>
+            <tr>
+                <td>20.x</td>
+                <td>Pendiente</td>
+                <td>2023-04-18</td>
+                <td>2024-10-22</td>
+                <td>2026-04-30</td>
+            </tr>
+        </table>
+        <button onclick="oc.deleteRow()">Borrar fila</button>
+        <button onclick="oc.addRow()">Añadir  fila</button>
     </section>
-    <button onclick="oc.ocultar('section')">Ocultar seccion</button>
-    <button onclick="oc.mostrar('section')">Mostrar seccion</button>
+
+    <h2>Aqui puedes ocultar todos los elementos</h2>
+    <button onclick="oc.ocultar('section')">Ocultar secciones</button>
+    <button onclick="oc.mostrar('section')">Mostrar secciones</button>
 
 </body>
 
