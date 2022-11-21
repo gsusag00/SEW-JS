@@ -3,6 +3,7 @@
 ## TODO
 
 Hacer el report con los warnings de css
+Puede ser con un txt
 
 ## ejercicio1
 [Files](https://github.com/gsusag00/SEW-JS/tree/main/Seccion-1/Ejercicio-01)  
