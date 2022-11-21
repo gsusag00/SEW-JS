@@ -846,19 +846,19 @@ class CalculadoraRPN extends CalculadoraCienfitica {
     }
 
     exp() {
-        if (this.pila.size() >= 2) {
-            var op1 = this.pila.pop();
+        if(this.pila.size() >= 2) {
             var op2 = this.pila.pop();
-            var res = Number(op1) * Math.pow(10, op2)
+            var op1 = this.pila.pop();
+            var res = Number(op1) * Math.pow(10,op2)
             this.pila.push(res)
         }
         this.updateTA();
     }
 
     mod() {
-        if (this.pila.size() >= 2) {
-            var op1 = this.pila.pop();
+        if(this.pila.size() >= 2) {
             var op2 = this.pila.pop();
+            var op1 = this.pila.pop();
             var res = Number(op1) % Number(op2)
             this.pila.push(res)
         }
@@ -1229,6 +1229,10 @@ document.addEventListener('keydown', function (event) {
             calc.hyp();
         } else if (event.key === 'F') {
             calc.fe();
+        } else if (event.key === '!') {
+            calc.factorial();
+        } else if (event.key === 'X') {
+            calc.exp();
         }
     } else {
         if (!isNaN(event.key) || event.key === '.') {
@@ -1268,17 +1272,21 @@ document.addEventListener('keydown', function (event) {
         } else if (event.key === 't') {
             calc.tan();
         } else if (event.key === 'x') {
-            calc.exp();
+            calc.x();
         } else if (event.key === 'd') {
             calc.mod();
-        } else if (event.key === 'l') {
+        } else if (event.key === 'g') {
             calc.log();
-        } else if (event.key === 'f') {
-            calc.factorial();
-        } else if (event.key === '^2') {
+        }  else if (event.key === '^2') {
             calc.square();
         } else if (event.key === '^x') {
             calc.tentox();
+        } else if (event.key === 'f') {
+            calc.createFunc();
+        } else if (event.key === "'") {
+            calc.der();
+        } else if (event.key === 'l') {
+            calc.lim();
         }
     }
 });

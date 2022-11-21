@@ -847,8 +847,8 @@ class CalculadoraRPN extends CalculadoraCienfitica {
 
     exp() {
         if(this.pila.size() >= 2) {
-            var op1 = this.pila.pop();
             var op2 = this.pila.pop();
+            var op1 = this.pila.pop();
             var res = Number(op1) * Math.pow(10,op2)
             this.pila.push(res)
         }
@@ -857,8 +857,8 @@ class CalculadoraRPN extends CalculadoraCienfitica {
 
     mod() {
         if(this.pila.size() >= 2) {
-            var op1 = this.pila.pop();
             var op2 = this.pila.pop();
+            var op1 = this.pila.pop();
             var res = Number(op1) % Number(op2)
             this.pila.push(res)
         }
