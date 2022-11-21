@@ -666,6 +666,8 @@ document.addEventListener('keydown', function (event) {
             calc.hyp();
         } else if (event.key === 'F') {
             calc.fe();
+        } else if(event.key === 'ArrowRight') {
+            calc.changesign();
         }
     } else {
         if (!isNaN(event.key) || event.key === '.') {
@@ -674,7 +676,7 @@ document.addEventListener('keydown', function (event) {
         else if (ops.includes(event.key)) {
             calc.operacion(event.key);
         }
-        else if (event.key === 's') {
+        else if (event.key === 'q') {
             calc.sqrt();
         }
         else if (event.key === '%') {

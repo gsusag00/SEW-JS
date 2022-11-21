@@ -221,6 +221,8 @@ document.addEventListener('keydown', function (event) {
         }
         else if (event.key === '-') {
             calc.m_minus();
+        } else if(event.key === 'ArrowRight') {
+            calc.changesign();
         }
     } else {
         if (!isNaN(event.key) || event.key === '.') {

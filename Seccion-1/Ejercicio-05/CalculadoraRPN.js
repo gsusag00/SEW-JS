@@ -955,6 +955,8 @@ document.addEventListener('keydown', function (event) {
             calc.hyp();
         } else if (event.key === 'F') {
             calc.fe();
+        } else if(event.key === 'ArrowRight') {
+            calc.changesign();
         }
     } else {
         if (!isNaN(event.key) || event.key === '.') {
