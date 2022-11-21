@@ -874,6 +874,7 @@ class CalculadoraRPN extends CalculadoraCienfitica {
     cpress() {
         this.pila.clear();
         this.updateTA();
+        super.cpress();
     }
 }
 
@@ -1049,7 +1050,7 @@ class Func {
 
     name = "f(x)"
     funcion = '';
-    der = ''
+    derivative = ''
 
     constructor() {
 
@@ -1063,12 +1064,12 @@ class Func {
         return this.funcion;
     }
 
-    setDer(der) {
-        this.der = der;
+    setDer(derivative) {
+        this.derivative = derivative;
     }
 
     getDer() {
-        return this.der;
+        return this.derivative;
     }
 
     toString() {
@@ -1078,6 +1079,12 @@ class Func {
     solve(x) {
         var pieces = this.funcion.split(" ");
         if (pieces.length === 1) {
+            if(pieces[0].includes('^')) {
+                var res1;
+                var first_pieces = pieces[0].split('^');
+                res1 = this.parseX(first_pieces[0],x)
+                return Math.pow(res1,Number(first_pieces[1]))
+            }
             if (!pieces[0].includes('x')) {
                 return pieces[0];
             }
@@ -1093,7 +1100,17 @@ class Func {
             var op1 = pieces[0];
             var op = pieces[1];
             var op2 = pieces[2];
-            op1 = this.parseX(pieces[0],x);
+            if(op1.includes('^')) {
+                var res1;
+                var first_pieces = op1.split('^');
+                res1 = this.parseX(first_pieces[0],x)
+                op1 = Math.pow(res1,Number(first_pieces[1]))
+            } else {
+                op1 = this.parseX(pieces[0],x);
+            }
+            if(op2.includes('x')) {
+                op2 = this.parseX(op2,x);
+            }
             return this.doOp(op1,op2,op)
         } else if (pieces.length === 5) {
             var sqr = pieces[0];
@@ -1138,6 +1155,12 @@ class Func {
     der() {
         var pieces = this.funcion.split(" ");
         if(pieces.length === 1) {
+            if(pieces[0].includes('^')) {
+                var res1;
+                var first_pieces = pieces[0].split('^');
+                res1 = this.parseX(first_pieces[0],x)
+                return Math.pow(res1,Number(first_pieces[1]))
+            }
             if (!pieces[0].includes('x')) {
                 return '0';
             }
@@ -1145,8 +1168,24 @@ class Func {
             return res + ''
         } else if(pieces.length === 3) {
             var op1 = pieces[0];
-            op1 = this.parseX(pieces[0],1);
-            return op1 + '';
+            var op = pieces[1];
+            var op2 = pieces[2];
+            if(op1.includes('^')) {
+                var res1;
+                var first_pieces = op1.split('^');
+                res1 = this.parseX(first_pieces[0],1)
+                op1 = res1 * Number(first_pieces[1])
+                if(op2.includes('x')) {
+                    op2 = this.parseX(op2,1);
+                    return op1 + 'x ' + op + ' ' + op2;
+                } else {
+                    return op1 + 'x';
+                }
+            } else {
+                op1 = this.parseX(pieces[0],1);
+                return op1 + '';
+            }
+            
         } else if(pieces.length === 5) {
             var sqr = pieces[0];
             var op1 = pieces[1];
