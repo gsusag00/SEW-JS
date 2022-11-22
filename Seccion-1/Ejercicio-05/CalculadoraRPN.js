@@ -3,7 +3,6 @@ class CalculadoraMilan {
     op = '';
     left = '';
     right = '';
-    point = false;
     has_eval = false;
     memory = 0;
 
@@ -179,7 +178,7 @@ class CalculadoraMilan {
             toEval = eval(val);
         } catch (err) {
             this.screen = 'Error';
-            document.getElementById('screen').value = this.screen;
+            document.querySelector('input[type="text"]').value = this.screen;
             this.op = '';
             this.left = '';
             this.right = '';
@@ -205,7 +204,7 @@ class CalculadoraMilan {
         else {
             val = this.left;
         }
-        document.getElementById('pantalla').value = val;
+        document.querySelector('input[type="text"]').value = val;
     }
 
 }
@@ -596,7 +595,7 @@ class CalculadoraCienfitica extends CalculadoraMilan {
 
     fact(val) {
         if (val < 0) {
-            document.getElementById('pantalla').value = 'Error';
+            document.querySelector('input[type="text"]').value = 'Error';
             this.op = '';
             this.left = '';
             this.right = '';
@@ -802,7 +801,6 @@ class CalculadoraRPN extends CalculadoraCienfitica {
                 val = this.convertRadToAngle(val)
             }
         }
-        
         this.pila.push(val);
     }
 
@@ -843,20 +841,20 @@ class CalculadoraRPN extends CalculadoraCienfitica {
         }
         this.trig_op(func)
         this.updateTA();
-    } 
+    }
 
     exp() {
-        if(this.pila.size() >= 2) {
+        if (this.pila.size() >= 2) {
             var op2 = this.pila.pop();
             var op1 = this.pila.pop();
-            var res = Number(op1) * Math.pow(10,op2)
+            var res = Number(op1) * Math.pow(10, op2)
             this.pila.push(res)
         }
         this.updateTA();
     }
 
     mod() {
-        if(this.pila.size() >= 2) {
+        if (this.pila.size() >= 2) {
             var op2 = this.pila.pop();
             var op1 = this.pila.pop();
             var res = Number(op1) % Number(op2)
@@ -866,14 +864,15 @@ class CalculadoraRPN extends CalculadoraCienfitica {
     }
 
     updateTA() {
-        document.getElementById('pila').innerHTML = this.pila.print();
-        document.getElementById('pantalla').value = '';
+        document.querySelector("textarea").innerHTML = this.pila.print();
+        document.querySelector('input[type="text"]').value = '';
         this.left = ''
     }
 
     cpress() {
         this.pila.clear();
         this.updateTA();
+        super.cepress();
     }
 }
 
@@ -955,7 +954,7 @@ document.addEventListener('keydown', function (event) {
             calc.hyp();
         } else if (event.key === 'F') {
             calc.fe();
-        } else if(event.key === 'ArrowRight') {
+        } else if (event.key === 'ArrowRight') {
             calc.changesign();
         }
     } else {

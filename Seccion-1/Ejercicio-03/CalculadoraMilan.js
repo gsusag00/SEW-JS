@@ -181,7 +181,7 @@ class CalculadoraMilan {
             toEval = eval(val);
         } catch (err) {
             this.screen = 'Error';
-            document.getElementById('screen').value = this.screen;
+            document.querySelector('input[type="text"]').value = this.screen;
             this.op = '';
             this.left = '';
             this.right = '';
@@ -207,7 +207,7 @@ class CalculadoraMilan {
         else {
             val = this.left;
         }
-        document.getElementById('pantalla').value = val;
+        document.querySelector('input[type="text"]').value = val;
     }
 
 }

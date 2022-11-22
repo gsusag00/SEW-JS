@@ -3,7 +3,6 @@ class CalculadoraMilan {
     op = '';
     left = '';
     right = '';
-    point = false;
     has_eval = false;
     memory = 0;
 
@@ -179,7 +178,7 @@ class CalculadoraMilan {
             toEval = eval(val);
         } catch (err) {
             this.screen = 'Error';
-            document.getElementById('screen').value = this.screen;
+            document.querySelector('input[type="text"]').value = this.screen;
             this.op = '';
             this.left = '';
             this.right = '';
@@ -205,7 +204,7 @@ class CalculadoraMilan {
         else {
             val = this.left;
         }
-        document.getElementById('pantalla').value = val;
+        document.querySelector('input[type="text"]').value = val;
     }
 
 }
@@ -596,7 +595,7 @@ class CalculadoraCienfitica extends CalculadoraMilan {
 
     fact(val) {
         if (val < 0) {
-            document.getElementById('pantalla').value = 'Error';
+            document.querySelector('input[type="text"]').value = 'Error';
             this.op = '';
             this.left = '';
             this.right = '';
@@ -802,7 +801,6 @@ class CalculadoraRPN extends CalculadoraCienfitica {
                 val = this.convertRadToAngle(val)
             }
         }
-
         this.pila.push(val);
     }
 
@@ -866,8 +864,8 @@ class CalculadoraRPN extends CalculadoraCienfitica {
     }
 
     updateTA() {
-        document.getElementById('pila').innerHTML = this.pila.print();
-        document.getElementById('pantalla').value = '';
+        document.querySelector('input[type="text"]').innerHTML = this.pila.print();
+        document.querySelector('input[type="text"]').value = '';
         this.left = ''
     }
 
