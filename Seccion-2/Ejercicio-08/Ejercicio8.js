@@ -1,7 +1,5 @@
 class Meteo {
 
-    cities = ['Oviedo', 'Gijon', 'Pamplona', 'Tarragona', 'Sevilla'];
-
     constructor() {
         this.apikey = '1684cb54506dd5e217a816e3f5f01ac7';
         this.unidades = '&units=metric';
@@ -36,6 +34,9 @@ class Meteo {
                 str += "<li>Visibilidad: " + datos.visibility + " metros</li>";
                 str += "<li>Nubosidad: " + datos.clouds.all + " %</li>";
                 $('ul').html(str);
+                var url = 'https://openweathermap.org/img/w/' + datos.weather[0].icon + '.png'
+                var alt = datos.weather[0].icon;
+                $('picture').html('<img src="' + url + '" alt="' + alt + '">');
             },
             error: function () {
                 $("h3").html("¡Tenemos problemas! No puedo obtener JSON de <a href='http://openweathermap.org'>OpenWeatherMap</a>");
