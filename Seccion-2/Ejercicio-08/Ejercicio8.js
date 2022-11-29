@@ -14,7 +14,7 @@ class Meteo {
             method: 'GET',
             success: function (datos) {
                 $('pre').text(JSON.stringify(datos, null, 2));
-
+                $('h3').text("Datos meteorologicos de " + datos.name);
                 var str = '<li>Ciudad: ' + datos.name + '</li>'
                 str += "<li>País: " + datos.sys.country + "</li>";
                 str += "<li>Latitud: " + datos.coord.lat + " grados</li>";
