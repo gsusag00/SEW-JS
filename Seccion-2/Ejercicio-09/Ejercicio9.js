@@ -10,7 +10,7 @@ class Meteo {
     getData(city) {
         $.ajax({
             dataType: "xml",
-            url: 'http://api.openweathermap.org/data/2.5/weather?q=' + city + ',' + this.codigoPais + + this.unidades + this.idioma + '&APPID=' + this.apikey,
+            url: 'http://api.openweathermap.org/data/2.5/weather?q=' + city + '&mode=xml' + this.unidades + this.idioma + '&APPID=' + this.apikey,
             method: 'GET',
             success: function (datos) {
                 console.log(datos);
