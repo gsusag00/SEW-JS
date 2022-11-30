@@ -1,0 +1,21 @@
+section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1em;
+}
+
+pre {
+    border: 0.0625em solid black;
+    border-radius: 1em;
+    padding: 1em;
+    width:50em;
+}
+
+aside {
+    display: flex;
+    column-gap: 1em;
+}
+
+
+

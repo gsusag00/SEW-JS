@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- Metadatos de los documentos HTML5 -->
+    <meta name="author" content="Jesús Alonso Gárcia">
+    <!-- Definición de la ventana grafica -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Titulo de la página -->
+    <title>Ejercicio 9</title>
+    <!-- añadir el elemento link de enlace a laa hoja de estilo dentro del <head> del documento html -->
+    <link rel="stylesheet" type="text/css" href="Ejercicio9.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="Ejercicio9.js"></script>
+</head>
+
+<body>
+    <section>
+
+        <h2> Datos del tiempo</h2>
+        <p> Con esta página web podras ver el tiempo actual en las diferentes ciudades.</p>
+        <aside>
+            <pre>
+                Pulse uno de los botones 
+            </pre>
+            <picture>
+                <img src="" alt="Icon">
+            </picture>
+        </aside>
+        <aside>
+            <button onclick="meteo.getData('Oviedo')">Datos para Oviedo</button>
+            <button onclick="meteo.getData('Gijon')"> Datos para Gijon</button>
+            <button onclick="meteo.getData('Pamplona')"> Datos para Pamplona</button>
+            <button onclick="meteo.getData('Tarragona')">Datos para Tarragona</button>
+            <button onclick="meteo.getData('Sevilla')"> Datos para Sevilla</button>
+        </aside>
+        <h3>Datos meterologicos</h3>
+        <ul></ul>
+    </section>
+</body>
+
+</html>
