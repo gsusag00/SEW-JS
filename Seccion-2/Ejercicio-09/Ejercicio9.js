@@ -75,14 +75,16 @@ class Meteo {
                 var precipitation = $('precipitation',datos).attr('value');
                 var precipitation_mode = $('precipitation',datos).attr('mode');
                 var precipitation_unit = $('precipitation',datos).attr('unit');
-                str += "<h4>Lluvia</h4>"
-                str += "<p> Presión: " + precipitation + " de " + precipitation_mode + " en la última" +  precipitation_unit +  "</p>"
+                if(precipitation) {
+                    str += "<h4>Lluvia</h4>"
+                    str += "<p> Presión: " + precipitation + " de " + precipitation_mode + " en la última" +  precipitation_unit +  "</p>"
+                }
                 var weather_value = $('weather',datos).attr('value');
                 var weather_icon = $('weather',datos).attr('icon');
                 var last_update = $('lastupdate',datos).attr('value');
                 last_update = last_update.split("T")
                 str += "<h4>Resumen</h4>"
-                str += "<p> Hoy " + weather_value + "visto a las " + last_update[1] + "</p>"
+                str += "<p> Hoy " + weather_value + " visto a las " + last_update[1] + "</p>"
 
                 $('article').html(str);
                 var url = 'https://openweathermap.org/img/w/' + weather_icon + '.png'
