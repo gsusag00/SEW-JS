@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- Metadatos de los documentos HTML5 -->
+    <meta name="author" content="Jesús Alonso Gárcia">
+    <!-- Definición de la ventana grafica -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Titulo de la página -->
+    <title>Ejercicio 10</title>
+    <!-- añadir el elemento link de enlace a laa hoja de estilo dentro del <head> del documento html -->
+    <link rel="stylesheet" type="text/css" href="Ejercicio10.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="Ejercicio10.js"></script>
+</head>
+
+<body>
+    <h1>Precio del oro</h1>
+    <form>
+        <label for="fecha">Escoge la fecha</label>
+        <input type="date" id="fecha">
+        <label for="currency"> Escoge la divisa.</label>
+        <select id="currency">
+            <option value="EUR"> Euros </option>
+            <option value="USD"> Dolar </option>
+            <option value="GBP"> Libra </option>
+        </select>
+        <input type="button" value="Mirar el precio del oro" onclick="gold.checkPrice()">
+    </form>
+    <section>
+        <h2>
+            Estos son los datos sobre el precio del oro.
+        </h2>
+        <p></p>
+    </section>
+</body>
+
+</html>
