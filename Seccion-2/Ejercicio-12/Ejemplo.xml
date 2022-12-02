@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<current>
+    <city id="3114711" name="Oviedo">
+        <coord lon="-5.8448" lat="43.3603"/>
+        <country>ES</country>
+        <timezone>3600</timezone>
+        <sun rise="2022-11-30T07:34:54" set="2022-11-30T16:49:29"/>
+    </city>
+    <temperature value="11.86" min="8.2" max="12.07" unit="celsius"/>
+    <feels_like value="11.71" unit="celsius"/>
+    <humidity value="100" unit="%"/>
+    <pressure value="1013" unit="hPa"/>
+    <wind>
+        <speed value="0.89" unit="m/s" name="Calm"/>
+        <gusts value="1.34"/>
+        <direction value="182" code="S" name="South"/>
+    </wind>
+    <clouds value="92" name="overcast clouds"/>
+    <visibility value="10000"/>
+    <precipitation value="0.11" mode="rain" unit="1h"/>
+    <weather number="500" value="lluvia ligera" icon="10d"/>
+    <lastupdate value="2022-11-30T10:33:31"/>
+</current>

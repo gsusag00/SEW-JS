@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <title>Ejercicio12</title>
+    <meta name="author" content="Jesús Alonso García">
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='Ejercicio12.css'>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src='Ejercicio12.js'></script>
+</head>
+<body>
+    <h1>Leer archivos.</h1>
+    <p>Para resolver este ejercicio se va a usar la API FILE de javascript</p>
+    <form>
+        <label for="filecharger">Por favor introduce un archivo.</label>
+        <input type="file" id="filecharger" onchange="file.loadFile(this.files)">
+    </form>
+</body>
+</html>
