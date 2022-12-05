@@ -1,0 +1,25 @@
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+section {
+    border: 0.0625em solid red;
+    border-radius: 0.5em;
+    margin-top: 1em;
+    background-color: black;
+    color: white;
+}
+
+button {
+    margin-left: 1em;
+}
+
+h1 {
+    padding: 1em;
+}
+
+h2{
+    text-align: center;
+    text-decoration: underline;
+}
