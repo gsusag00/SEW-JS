@@ -21,7 +21,8 @@ class LeeArchivo {
                 data += '<li>' + tipo + '</li>'
                 data += '<li>' + ultimo + '</li>'
                 $('ul').append(data)
-                $('aside').append('<h2>Contenido del archivo</h2><textarea></textarea>')
+                $('aside').append('<h2>Contenido del archivo</h2><label for="file">Contenido</label><textarea></textarea>')
+                $('textarea').attr('id','file');
                 $('textarea').text(reader.result);
             }
             reader.readAsText(archivo);
