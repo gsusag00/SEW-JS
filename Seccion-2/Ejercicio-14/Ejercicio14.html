@@ -22,7 +22,8 @@
             <button onclick="draw.init()">Ajustar a pantalla</button>
             <button onclick="draw.clear()">Limpiar</button>
             <button onclick="draw.useMap()">Usar mapa</button>
-            <input type="file" accept=".json" onchange="draw.loadConf(this.files)">
+            <label for="conf">Carga configuracion</label>
+            <input id="conf" type="file" accept=".json" onchange="draw.loadConf(this.files)">
         </section>
         
         <aside>
