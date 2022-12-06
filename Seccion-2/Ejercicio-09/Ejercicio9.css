@@ -25,5 +25,12 @@ aside {
     column-gap: 1em;
 }
 
+/*
+    Especifidad 0 0 1
+*/
+button {
+    margin: 1em;
+}
+
 
 
