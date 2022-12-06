@@ -89,6 +89,8 @@ class Meteo {
                 $('article').html(str);
                 var url = 'https://openweathermap.org/img/w/' + weather_icon + '.png'
                 var alt =weather_icon;
+                $('aside picture').remove()
+                $('aside').first().append('<picture></picture>');
                 $('picture').html('<img src="' + url + '" alt="' + alt + '">');
             },
             error: function () {
