@@ -1,0 +1,1 @@
+Al darle al boton de recorrer el arbol dom, se va a añadir texto dentro del elemento <picture></picture> Obviamente esto no es posible ya que daria un warning al pasar por el validador. Debido a la función del boton este es el comportamiento esperado
