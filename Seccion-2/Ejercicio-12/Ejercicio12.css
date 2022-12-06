@@ -1,0 +1,17 @@
+/*
+    Especifidad 0 0 1
+*/
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/*
+    Especifidad 0 0 1
+*/
+aside {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
