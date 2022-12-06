@@ -49,15 +49,6 @@ class CarGame {
         this.canvas.addEventListener('mousemove',(e) => {
             this.drawing(e);
         })
-        this.canvas.addEventListener('touchstart', (e) => {
-            this.startDrawing(e);
-        });
-        this.canvas.addEventListener('touchend', (e) => {
-            this.stopDrawing();
-        });
-        this.canvas.addEventListener('touchmove',(e) => {
-            this.drawing(e);
-        })
         this.offsetx = this.canvas.offsetLeft;
         this.offsety = this.canvas.offsetTop;
         this.canvas.width = window.innerWidth - this.offsetx;
