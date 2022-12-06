@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Mapa GeoJSON</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <meta name="author" content="Jesús Alonso García">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel='stylesheet' type='text/css' media='screen' href='MapaGeoJSON.css'>
+    <script src='MapaGeoJSON.js'></script>
+</head>
+<body>
+
+    <h1>Mapa red social</h1>
+    <input type="file" accept=".geojson" onchange="reader.readFile(this.files)"/>
+    <main>
+        <h2>Aqui se va a mostrar el mapa de tu red social</h2>
+    </main>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVeIi4acZF89Yr39A0fl4qhmk9MJHAbuc&callback=reader.initMap"></script>
+    
+</body>
+</html>

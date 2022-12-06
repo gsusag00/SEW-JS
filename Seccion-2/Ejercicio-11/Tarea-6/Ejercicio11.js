@@ -10,7 +10,7 @@ class MapaDinamico {
 
     initMap() {
         var oviedo = {lat: this.lat, lng: this.long};
-        var mapaOviedo = new google.maps.Map(document.querySelector('main'),{zoom: 15,center:oviedo});
+        var mapaOviedo = new google.maps.Map(document.querySelector('main'),{zoom: 5,center:oviedo});
         var marcador = new google.maps.Marker({position:oviedo,map:mapaOviedo});
     }
 
@@ -23,14 +23,6 @@ class MapaDinamico {
         this.lat = lat;
         this.long = long;
         this.crearMapa();
-    }
-
-    setLat(val) {
-        this.lat = val;
-    }
-
-    setLong(val) {
-        this.long = val;
     }
 
     crearMapa(){

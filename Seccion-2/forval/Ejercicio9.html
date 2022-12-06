@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Mapa GeoJSON</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <meta name="author" content="Jesús Alonso García">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel='stylesheet' type='text/css' media='screen' href='MapaGeoJSON.css'>
+    <script src='MapaGeoJSON.js'></script>
+</head>
+
+<body>
+    <section>
+
+        <h2> Datos del tiempo</h2>
+        <p> Con esta página web podras ver el tiempo actual en las diferentes ciudades.</p>
+        <aside>
+            <textarea>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;current&gt;&lt;city id="3114711" name="Oviedo"&gt;&lt;coord lon="-5.8448" lat="43.3603"/&gt;&lt;country&gt;ES&lt;/country&gt;&lt;timezone&gt;3600&lt;/timezone&gt;&lt;sun rise="2022-12-06T07:41:13" set="2022-12-06T16:47:50"/&gt;&lt;/city&gt;&lt;temperature value="11.99" min="10.31" max="14.49" unit="celsius"/&gt;&lt;feels_like value="11.73" unit="celsius"/&gt;&lt;humidity value="95" unit="%"/&gt;&lt;pressure value="1014" unit="hPa"/&gt;&lt;wind&gt;&lt;speed value="0.32" unit="m/s" name="Calm"/&gt;&lt;gusts value="0.86"/&gt;&lt;direction value="279" code="W" name="West"/&gt;&lt;/wind&gt;&lt;clouds value="93" name="overcast clouds"/&gt;&lt;visibility value="10000"/&gt;&lt;precipitation mode="no"/&gt;&lt;weather number="804" value="nubes" icon="04d"/&gt;&lt;lastupdate value="2022-12-06T11:16:59"/&gt;&lt;/current&gt;</textarea>
+            <picture><img src="https://openweathermap.org/img/w/04d.png" alt="04d"></picture>
+        </aside>
+        <aside>
+            <button onclick="meteo.getData('Oviedo')">Datos para Oviedo</button>
+            <button onclick="meteo.getData('Gijon')"> Datos para Gijon</button>
+            <button onclick="meteo.getData('Pamplona')"> Datos para Pamplona</button>
+            <button onclick="meteo.getData('Tarragona')">Datos para Tarragona</button>
+            <button onclick="meteo.getData('Sevilla')"> Datos para Sevilla</button>
+        </aside>
+        <article><h3> Datos meteorológicos de: Oviedo</h3><h4> Ciudad: Oviedo</h4><ul> <li>Latitud: 43.3603</li><li> Longitud: -5.8448</li><li> Pais: ES</li><li> Zona horaria: 3600</li><li> Amanecer: 07:41:13</li><li> Atardecer: 16:47:50</li></ul><h4>Temperatura y sensación</h4><ul> <li> Temperatura: 11.99º celsius</li><li> Temperatura minima: 10.31º celsius</li><li> Temperatura máxima: 14.49º celsius</li><li> Sensación térmica: 11.73º celsius</li></ul><h4>Humedad</h4><p> Humedad: 95%</p><h4>Presión</h4><p> Presión: 1014 hPa</p><h4>Viento</h4><ul> <li> Velocidad: 0.32m/s, Calm</li><li> Rafaga: 0.86m/s</li><li> Dirección: 279W, West</li></ul><h4>Nubes</h4><ul> <li> Porcentage: 93, overcast clouds</li><li> Visibilidad: 10000 metros</li></ul><h4>Resumen</h4><p> Hoy nubes visto a las 11:16:59</p></article>
+        <ul></ul>
+    </section>
+
+
+</body>
+
+</html>

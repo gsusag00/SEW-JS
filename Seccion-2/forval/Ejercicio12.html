@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Mapa GeoJSON</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <meta name="author" content="Jesús Alonso García">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel='stylesheet' type='text/css' media='screen' href='MapaGeoJSON.css'>
+    <script src='MapaGeoJSON.js'></script>
+</head>
+
+<body>
+    <h1>Leer archivos.</h1>
+    <p>Para resolver este ejercicio se va a usar la API FILE de javascript</p>
+    <form>
+        <label for="filecharger">Por favor introduce un archivo.</label>
+        <input type="file" id="filecharger" onchange="file.loadFile(this.files)">
+    </form>
+
+<aside><h2>Datos del archivo</h2><ul><li>Nombre del archivo: Ejemplo.json</li><li>Tamaño del archivo: 824 bytes</li><li>Tipo de archivo: application/json</li><li>Última modificación: undefined</li></ul><h2>Contenido del archivo</h2><textarea>{
+    "coord": {
+      "lon": -5.8448,
+      "lat": 43.3603
+    },
+    "weather": [
+      {
+        "id": 804,
+        "main": "Clouds",
+        "description": "nubes",
+        "icon": "04d"
+      }
+    ],
+    "base": "stations",
+    "main": {
+      "temp": 284.56,
+      "feels_like": 283.71,
+      "temp_min": 283.35,
+      "temp_max": 286.53,
+      "pressure": 1022,
+      "humidity": 75
+    },
+    "visibility": 10000,
+    "wind": {
+      "speed": 5.36,
+      "deg": 304,
+      "gust": 9.39
+    },
+    "clouds": {
+      "all": 86
+    },
+    "dt": 1669642666,
+    "sys": {
+      "type": 2,
+      "id": 2032169,
+      "country": "ES",
+      "sunrise": 1669620758,
+      "sunset": 1669654221
+    },
+    "timezone": 3600,
+    "id": 3114711,
+    "name": "Oviedo",
+    "cod": 200
+  }</textarea></aside></body>
+
+</html>

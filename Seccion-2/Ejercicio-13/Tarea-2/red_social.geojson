@@ -1,0 +1,48 @@
+{
+"type": "FeatureCollection",
+"name": "Red Social",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [{ 
+    "type": "Feature",
+    "properties": {
+        "Name": "Jesus Alonso Garcia",
+        "description": null 
+    }, "geometry": { 
+            "type": "Point", 
+            "coordinates": [ -5.844540267411897, 43.36347538113813 ] 
+        } 
+    }, { "type": "Feature", 
+    "properties": { 
+        "Name": "Residencia de: Jesus Alonso Garcia", 
+        "description": null 
+    }, "geometry": { 
+        "type": "Point", 
+        "coordinates": [ -1.979828377074042, 43.318374568114663 ] 
+        } 
+    },
+{ "type": "Feature", "properties": { "Name": "Earlene Aleks", "description": null }, "geometry": { "type": "Point", "coordinates": [ -8.409596135871102, 43.368342209026466 ] } },
+{ "type": "Feature", "properties": { "Name": "Residencia de: Earlene Aleks", "description": null }, "geometry": { "type": "Point", "coordinates": [ -8.543055393334193, 42.881441492290321 ] } },
+{ "type": "Feature", "properties": { "Name": "Joanna Dominguez", "description": null }, "geometry": { "type": "Point", "coordinates": [ -5.573273793628222, 42.600804514428688 ] } },
+{ "type": "Feature", "properties": { "Name": "Residencia de: Joanna Dominguez", "description": null }, "geometry": { "type": "Point", "coordinates": [ -4.734692416721377, 41.651627548733032 ] } },
+{ "type": "Feature", "properties": { "Name": "Marissa Montoya", "description": null }, "geometry": { "type": "Point", "coordinates": [ -2.933223421125115, 43.267802182831296 ] } },
+{ "type": "Feature", "properties": { "Name": "Residencia de: Marissa Montoya", "description": null }, "geometry": { "type": "Point", "coordinates": [ -5.664408002872046, 40.976637876179204 ] } },
+{ "type": "Feature", "properties": { "Name": "Valerie Larson", "description": null }, "geometry": { "type": "Point", "coordinates": [ -0.12553480285098, 38.547322219459964 ] } },
+{ "type": "Feature", "properties": { "Name": "Residencia de: Valerie Larson", "description": null }, "geometry": { "type": "Point", "coordinates": [ -4.020725761920611, 39.864760322733204 ] } },
+{ "type": "Feature", "properties": { "Name": "Bridget Cisneros", "description": null }, "geometry": { "type": "Point", "coordinates": [ -5.661588678368995, 43.532045373480507 ] } },
+{ "type": "Feature", "properties": { "Name": "Residencia de: Bridget Cisneros", "description": null }, "geometry": { "type": "Point", "coordinates": [ -6.97532941176084, 38.8755545605148 ] } },
+{ "type": "Feature", "properties": { "Name": "Liz Charles", "description": null }, "geometry": { "type": "Point", "coordinates": [ -5.923857470041392, 43.559404878520191 ] } },
+{ "type": "Feature", "properties": { "Name": "Residencia de: Liz Charles", "description": null }, "geometry": { "type": "Point", "coordinates": [ -1.646597774278748, 42.822731822486702 ] } },
+{ "type": "Feature", "properties": { "Name": "Booker Dawson", "description": null }, "geometry": { "type": "Point", "coordinates": [ -5.767211364172307, 43.590324251260377 ] } },
+{ "type": "Feature", "properties": { "Name": "Residencia de: Booker Dawson", "description": null }, "geometry": { "type": "Point", "coordinates": [ 1.247500206862817, 41.133477938476211 ] } },
+{ "type": "Feature", "properties": { "Name": "Wanda Bennett", "description": null }, "geometry": { "type": "Point", "coordinates": [ -5.983213245168238, 37.392536442706486 ] } },
+{ "type": "Feature", "properties": { "Name": "Residencia de: Wanda Bennett", "description": null }, "geometry": { "type": "Point", "coordinates": [ 2.747152787587487, 39.548141500943174 ] } },
+{ "type": "Feature", "properties": { "Name": "Rory Zhang", "description": null }, "geometry": { "type": "Point", "coordinates": [ -3.707012187865398, 40.430552801146021 ] } },
+{ "type": "Feature", "properties": { "Name": "Residencia de: Rory Zhang", "description": null }, "geometry": { "type": "Point", "coordinates": [ 1.422435635744949, 38.905704297382407 ] } },
+{ "type": "Feature", "properties": { "Name": "Jayne Hunt", "description": null }, "geometry": { "type": "Point", "coordinates": [ 2.108944326828431, 41.379767476854141 ] } },
+{ "type": "Feature", "properties": { "Name": "Residencia de: Jayne Hunt", "description": null }, "geometry": { "type": "Point", "coordinates": [ -2.457119149693391, 36.836561717920567 ] } },
+{ "type": "Feature", "properties": { "Name": "Polly Waller", "description": null }, "geometry": { "type": "Point", "coordinates": [ -0.375254063183258, 39.482996600080142 ] } },
+{ "type": "Feature", "properties": { "Name": "Residencia de: Polly Waller", "description": null }, "geometry": { "type": "Point", "coordinates": [ -9.129314151613583, 38.716224620624324 ] } },
+{ "type": "Feature", "properties": { "Name": "Wilford Cameron", "description": null }, "geometry": { "type": "Point", "coordinates": [ -3.784790412682936, 37.779190851694956 ] } },
+{ "type": "Feature", "properties": { "Name": "Residencia de: Wilford Cameron", "description": null }, "geometry": { "type": "Point", "coordinates": [ -8.636382834013689, 41.154820525647921 ] } }
+]
+}

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Mapa GeoJSON</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <meta name="author" content="Jesús Alonso García">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel='stylesheet' type='text/css' media='screen' href='MapaGeoJSON.css'>
+    <script src='MapaGeoJSON.js'></script>
+</head>
+
+<body>
+    <h1>Precio del oro</h1>
+    <form>
+        <label for="fecha">Escoge la fecha: </label>
+        <input type="date" id="fecha">
+        <label for="currency"> Escoge la divisa: </label>
+        <select id="currency">
+            <option value="EUR"> Euros </option>
+            <option value="USD"> Dolar </option>
+            <option value="GBP"> Libra </option>
+        </select>
+        <input type="button" value="Mirar el precio del oro" onclick="gold.checkPrice()">
+    </form>
+    <section>
+        <h2>El precio del oro en EUR</h2>
+        <p>El precio del oro es :0.00059251€/onza</p>
+    </section>
+
+
+</body>
+
+</html>

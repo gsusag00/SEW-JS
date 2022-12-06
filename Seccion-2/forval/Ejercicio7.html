@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Mapa GeoJSON</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <meta name="author" content="Jesús Alonso García">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel='stylesheet' type='text/css' media='screen' href='MapaGeoJSON.css'>
+    <script src='MapaGeoJSON.js'></script>
+</head>
+
+<body>
+    <h1>
+        Mostrar y ocultar elementos
+    </h1>
+    <section>
+        <h2>Eliminar elementos</h2>
+        <p> Estos parrafos se van a eliminar</p>
+        <p> Hola buenas</p>
+        <p> Que tal?</p>
+        <button onclick="oc.ocultar('p')">Ocultar parrafos</button>
+        <button onclick="oc.mostrar('p')">Mostrar parrafos</button>
+
+        <h2> Modificar elementos</h2>
+        <aside>
+            <picture>
+                <img src="vela.jpg" alt="Una vela">
+            </picture>
+        </aside>
+        <button onclick="oc.modify()">Cambiar a bombilla</button>
+        <button onclick="oc.restore()">Cambiar a vela</button>
+
+        <h2> Recorrer DOM</h2>
+        <button onclick="oc.recorrerDOM()"> Recorrer DOM</button>
+
+        <h2>Añadir y borrar elementos</h2>
+        <h2>Sumar filas y columnas de una tabla</h2>
+        <table>
+            <caption> Tabla con datos para hacer la suma</caption>
+            <tbody><tr>
+                <th>Versión</th>
+                <th>Estatus</th>
+                <th>Lanzamiento Inicial</th>
+                <th>Comienzo del mantenimiento</th>
+                <th>Fin de mantenimiento</th>
+            </tr>
+            <tr>
+                <td>14</td>
+                <td>36</td>
+                <td>-15</td>
+                <td>2</td>
+                <td>6</td>
+            </tr>
+            
+            <tr><td> 9</td><td>3</td><td>7</td><td>4</td><td>5</td></tr><tr><td> 3</td><td>5</td><td>9</td><td>3</td><td>7</td></tr></tbody></table>
+        <button onclick="oc.deleteRow()">Borrar fila</button>
+        <button onclick="oc.addRow()">Añadir  fila</button>
+
+
+        
+        <h3>El valor de la suma es: 98</h3>
+        <button onclick="oc.sumaTabla()">Sumar tabla</button>
+    </section>
+
+    <h2>Aqui puedes ocultar todos los elementos</h2>
+    <button onclick="oc.ocultar('section')">Ocultar secciones</button>
+    <button onclick="oc.mostrar('section')">Mostrar secciones</button>
+
+
+
+</body>
+
+</html>

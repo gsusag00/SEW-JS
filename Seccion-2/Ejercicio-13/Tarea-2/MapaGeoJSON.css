@@ -1,0 +1,14 @@
+body {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+img {
+    margin-left: 15%;
+}
+
+main {
+    height: 30em;
+    width: 80%;
+}
