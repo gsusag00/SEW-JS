@@ -1,3 +1,6 @@
+/*
+    Especifidad 0 0 1
+*/
 section {
     display: flex;
     flex-direction: column;
@@ -5,12 +8,18 @@ section {
     padding: 1em;
 }
 
+/*
+    Especifidad 0 0 1
+*/
 textarea {
     border: 0.0625em solid black;
     width:50em;
     resize: vertical;
 }
 
+/*
+    Especifidad 0 0 1
+*/
 aside {
     display: flex;
     column-gap: 1em;

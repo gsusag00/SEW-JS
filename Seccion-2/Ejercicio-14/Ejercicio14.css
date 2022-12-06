@@ -1,3 +1,6 @@
+/*
+    Especifidad 0 0 1
+*/
 body {
     margin: 0;
     padding: 0;
@@ -6,11 +9,17 @@ body {
     color: white;
 }
 
+/*
+    Especifidad 0 0 1
+*/
 main {
     height: 100%;
     display: flex;
 }
 
+/*
+    Especifidad 0 0 1
+*/
 section {
     display: flex;
     flex-direction: column;
@@ -19,18 +28,30 @@ section {
     background-color: #202020;
 }
 
+/*
+    Especifidad 0 0 1
+*/
 section * {
     margin-bottom: 6px;
 }
 
+/*
+    Especifidad 0 0 2
+*/
 section label {
     font-size: 12px;
 }
 
+/*
+    Especifidad 0 0 2
+*/
 section input {
     width: 100%;
 }
 
+/*
+    Especifidad 0 0 2
+*/
 section button {
     background-color: #1565c0;
     border: none;

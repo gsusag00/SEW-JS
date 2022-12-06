@@ -1,8 +1,14 @@
+/*
+    Especifidad 0 0 1
+*/
 body {
     display: flex;
     flex-direction: column;
 }
 
+/*
+    Especifidad 0 0 1
+*/
 section {
     border: 0.0625em solid red;
     border-radius: 0.5em;
@@ -11,18 +17,30 @@ section {
     color: white;
 }
 
+/*
+    Especifidad 0 0 1
+*/
 button {
     margin-left: 1em;
 }
 
+/*
+    Especifidad 0 0 1
+*/
 h1 {
     padding: 1em;
 }
 
+/*
+    Especifidad 0 0 1
+*/
 p {
     padding-left: 1em;
 }
 
+/*
+    Especifidad 0 0 1
+*/
 h2{
     text-align: center;
     text-decoration: underline;

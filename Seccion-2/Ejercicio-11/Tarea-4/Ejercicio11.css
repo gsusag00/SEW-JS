@@ -1,13 +1,22 @@
+/*
+    Especifidad 0 0 1
+*/
 body {
     display:flex;
     flex-direction: column;
     align-items: center;
 }
 
+/*
+    Especifidad 0 0 1
+*/
 img {
     margin-left: 15%;
 }
 
+/*
+    Especifidad 0 0 1
+*/
 main {
     display: flex;
     flex-direction: column;
