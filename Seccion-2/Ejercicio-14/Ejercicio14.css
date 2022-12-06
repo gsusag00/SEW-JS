@@ -4,9 +4,7 @@
 body {
     margin: 0;
     padding: 0;
-    height: 100vh;
-    overflow: hidden;
-    color: white;
+    height: 100%;
 }
 
 /*
@@ -26,6 +24,7 @@ section {
     padding: 1em;
     width: 10em;
     background-color: #202020;
+    color: white;
 }
 
 /*
